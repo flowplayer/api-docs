@@ -10,7 +10,6 @@ toc_footers:
   - <a href='https://flowplayer.org/pricing'>Sign up to use API's</a>
 
 includes:
-  - videos
   - errors
 
 search: true
