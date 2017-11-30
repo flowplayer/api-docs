@@ -6,8 +6,8 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='https://flowplayer.org'>About Flowplayer</a>
-  - <a href='https://flowplayer.org/pricing'>Sign up to use API's</a>
+  - <a href='https://flowplayer.com'>About Flowplayer</a>
+  - <a href='https://flowplayer.com/pricing'>Sign up to use API's</a>
 
 includes:
   - errors
@@ -24,7 +24,7 @@ This documentation covers all public API endpoints provided by our platform.
 Code examples are provided in several languages. You can switch between languages by clicking the tab
 headers.
 
-The live API lives in https://api.flowplayer.org
+The live API lives in https://hub.flowplayer.com
 
 # Authentication
 
@@ -32,7 +32,7 @@ The live API lives in https://api.flowplayer.org
 
 ```shell
 # Just pass the JWT token in headers
-curl https://api.flowplayer.org/<endpoint> \
+curl https://hub.flowplayer.com/<endpoint> \
        -H "Authorization: Bearer <token>"
 ```
 
@@ -54,7 +54,7 @@ Flowplayer API expects the token to be sent in `Authorization` header for every 
 > Obtain a token
 
 ```shell
-curl https://api.flowplayer.org/auth/tokens -X POST \
+curl https://hub.flowplayer.com/auth/tokens -X POST \
        --data "email=<email>&password=<password>"
 ```
 
@@ -79,7 +79,7 @@ This endpoint is used to generate authentication tokens.
 
 ### HTTP Request
 
-`POST https://api.flowplayer.org/auth/tokens`
+`POST https://hub.flowplayer.com/auth/tokens`
 
 ### Request Parameters
 
