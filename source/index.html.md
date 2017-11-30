@@ -3,6 +3,7 @@ title: Flowplayer API Reference
 
 language_tabs:
   - shell
+  - javascript
 
 toc_footers:
   - <a href='https://flowplayer.com'>About Flowplayer</a>
