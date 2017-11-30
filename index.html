@@ -220,8 +220,8 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='https://flowplayer.org'>About Flowplayer</a></li>
-            <li><a href='https://flowplayer.org/pricing'>Sign up to use API's</a></li>
+            <li><a href='https://flowplayer.com'>About Flowplayer</a></li>
+            <li><a href='https://flowplayer.com/pricing'>Sign up to use API's</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -236,7 +236,7 @@
 <p>Code examples are provided in several languages. You can switch between languages by clicking the tab
 headers.</p>
 
-<p>The live API lives in https://api.flowplayer.org</p>
+<p>The live API lives in https://hub.flowplayer.com</p>
 
 <h1 id="authentication">Authentication</h1>
 
@@ -244,7 +244,7 @@ headers.</p>
 <p>Authenticate requests</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># Just pass the JWT token in headers</span>
-curl https://api.flowplayer.org/&lt;endpoint&gt; <span class="se">\</span>
+curl https://hub.flowplayer.com/&lt;endpoint&gt; <span class="se">\</span>
        -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Obtain a authenticated copy of the client</span>
 <span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'flowplayer-client'</span><span class="p">)(</span><span class="s1">'&lt;token&gt;'</span><span class="p">);</span>
@@ -262,7 +262,7 @@ curl https://api.flowplayer.org/&lt;endpoint&gt; <span class="se">\</span>
 <blockquote>
 <p>Obtain a token</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl https://api.flowplayer.org/auth/tokens -X POST <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl https://hub.flowplayer.com/auth/tokens -X POST <span class="se">\</span>
        --data <span class="s2">"email=&lt;email&gt;&amp;password=&lt;password&gt;"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'flowplayer-client'</span><span class="p">);</span>
 <span class="k">try</span> <span class="p">{</span>
@@ -282,7 +282,7 @@ curl https://api.flowplayer.org/&lt;endpoint&gt; <span class="se">\</span>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.flowplayer.org/auth/tokens</code></p>
+<p><code class="prettyprint">POST https://hub.flowplayer.com/auth/tokens</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
