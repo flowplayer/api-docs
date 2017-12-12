@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - errors
+  - analytics
 
 search: true
 ---
@@ -87,3 +88,4 @@ Parameter | Description
 --------- | -------------------------------------
 email     | Email associated with the platform
 password  | Password associated with the platform
+
