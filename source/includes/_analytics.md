@@ -95,3 +95,137 @@ HTTP status | Description
 ----------- | --------------------------------------------
 404         | if the specified site or video is not found
 
+## Intervals
+
+This endpoint returns view and display counts for specified time intervals.
+
+> Get data for today, with a comparison to yesterday.
+
+```shell
+curl "https://api.flowplayer.com/interval" 
+```
+
+> Returns an array with two entries: One for today and one for yesterday. On 2017-12-19 it returned following:
+
+```json
+[
+    	{
+    		"date_from": "2017-12-17T11:00:00.000Z",
+    		"date_to": "2017-12-18T11:00:00.000Z",
+    		"intervals": [
+    			{
+    				"time": "2017-12-18T11:00:00.000Z",
+    				"views": 69055,
+    				"displays": 108993
+    			}
+    		],
+    		"total": {
+    			"displays": 108993,
+    			"views": 69055
+    		}
+    	},
+    	{
+    		"date_from": "2017-12-18T11:00:00.000Z",
+    		"date_to": "2017-12-19T11:00:00.000Z",
+    		"intervals": [
+    			{
+    				"time": "2017-12-19T11:00:00.000Z",
+    				"views": 137152,
+    				"displays": 212893
+    			}
+    		],
+    		"total": {
+    			"displays": 212893,
+    			"views": 137152
+    		}
+    	}
+    ]
+```
+
+> Get hourly stats for three hours, comparing them to the previous three hours.
+
+```shell
+curl "https://api.flowplayer.com/interval?start=2017-12-01T00&end=2017-12-01T03"
+```
+
+> Returns two intervals, one for the queried time range between 2017-12-01T00 and end=2017-12-01T03, and another interval
+is automatically added for a second three hour segment before the queried start time
+
+```json
+ [
+    	{
+    		"date_from": "2017-11-30T20:00:00.000Z",
+    		"date_to": "2017-12-01T00:00:00.000Z",
+    		"intervals": [
+    			{
+    				"time": "2017-11-30T21:00:00.000Z",
+    				"views": 16522,
+    				"displays": 24612
+    			},
+    			{
+    				"time": "2017-11-30T22:00:00.000Z",
+    				"views": 4832,
+    				"displays": 7162
+    			},
+    			{
+    				"time": "2017-11-30T23:00:00.000Z",
+    				"views": 2002,
+    				"displays": 3531
+    			},
+    			{
+    				"time": "2017-12-01T00:00:00.000Z",
+    				"views": 0,
+    				"displays": 0
+    			}
+    		],
+    		"total": {
+    			"displays": 35305,
+    			"views": 23356
+    		}
+    	},
+    	{
+    		"date_from": "2017-12-01T00:00:00.000Z",
+    		"date_to": "2017-12-01T03:00:00.000Z",
+    		"intervals": [
+    			{
+    				"time": "2017-12-01T01:00:00.000Z",
+    				"views": 1507,
+    				"displays": 2684
+    			},
+    			{
+    				"time": "2017-12-01T02:00:00.000Z",
+    				"views": 244,
+    				"displays": 439
+    			},
+    			{
+    				"time": "2017-12-01T03:00:00.000Z",
+    				"views": 0,
+    				"displays": 0
+    			}
+    		],
+    		"total": {
+    			"displays": 3123,
+    			"views": 1751
+    		}
+    	}
+    ]
+```
+
+> To exclude the automatically added previous time range, specify `previous=false`.
+
+```shell
+curl "https://api.flowplayer.com/intervals?start=2017-12-01&end=2017-12-17&previous=false"
+```
+
+### Request parameters
+
+The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
+in the account's site group, if no `site` not `id` is passed as a parameter. 
+
+Parameter | Description
+--------- | -------------------------------------
+id        | optional video ID, or a list of several IDs 
+site      | optional site ID, or a list of site IDs
+start     | optional start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+end       | optional end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+   
