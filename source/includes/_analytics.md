@@ -1,8 +1,6 @@
-# Analytics
+# Video analytics (VOD)
 
-## Video analytics
-
-### Get analytics for a specific video
+## Get analytics for a specific video
 
 This endpoint is used to query anlytics for a specific video. It returns view and display counts and segments view counts.
 A `view` is counted when playback starts and a `display` happens when the video player is shown for this video.
@@ -10,27 +8,14 @@ A `view` is counted when playback starts and a `display` happens when the video 
 The video timeline is divided into 100 `segments`. The return value of this endpoint includes view counts for each of 
 these 100 segments.
 
-### HTTP Request
-
-`GET http://localhost:3000/videos/:id`
-
-### Request parameters
-
-Parameter | Description
---------- | -------------------------------------
-starts    | Optional starting date/time of the interval, format `YYY-MM-DDTHH` or `YYY-MM-DD`
-ends      | optional ending date/time of the interval, format `YYY-MM-DDTHH` or `YYY-MM-DD`
-
-
-
 > Get analytics for video with ID 360b8f49-3c98-4020-ac72-83f958405239
 
 ```shell
-curl "http://localhost:3000/videos/360b8f49-3c98-4020-ac72-83f958405239" \
+curl "https://api.flowplayer.com/videos/360b8f49-3c98-4020-ac72-83f958405239" \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d $'{
-  "ends": "2017-12-31T00",
-  "starts": "2017-12-01T00"
+  "end": "2017-12-31T00",
+  "start": "2017-12-01T00"
 }'
 ```
 
@@ -50,4 +35,63 @@ curl "http://localhost:3000/videos/360b8f49-3c98-4020-ac72-83f958405239" \
 }
 ```
 
-## Live 
+### HTTP Request
+
+`GET https://api.flowplayer.com/videos/:id`
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+start     | Optional starting date/time of the interval, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+end       | optional ending date/time of the interval, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+
+
+## Current viewers
+
+This endpoint returns the current view count matching the specified parameters.
+
+> Get current number of viewers for all videos belonging to the site group 
+
+```shell
+curl "https://api.flowplayer.com/current" 
+```
+
+> returns the the estimated number of viewers
+
+```json
+{"views":250}
+```
+
+> Get current number of viewers for one video 
+
+```shell
+curl "https://api.flowplayer.com/current?id=360b8f49-3c98-4020-ac72-83f958405239" 
+```
+
+> Get current number of viewers for two videos 
+
+```shell
+curl "https://api.flowplayer.com/current?id=[360b8f49-3c98-4020-ac72-83f958405239,00048d7e-7ffb-46ee-ae21-e49b3668fea8]" 
+```
+
+### HTTP Request
+
+`/videos/:id/current`
+
+### Request parameters
+
+The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
+in the account's site group, if no `site` not `id` is passed as a parameter. 
+
+Parameter | Description
+--------- | -------------------------------------
+id        | optional video ID, or a list of several IDs 
+site      | optional site ID, or a list of site IDs
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+404         | if the specified site or video is not found
+
