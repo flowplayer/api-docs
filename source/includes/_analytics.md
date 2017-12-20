@@ -47,37 +47,37 @@ start     | Optional starting date/time of the interval, format `YYY-MM-DDTHH` o
 end       | optional ending date/time of the interval, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 
 
-## Current viewers
+## Current number of viewers
 
-This endpoint returns the current view count matching the specified parameters.
+This endpoint returns the current viewer count matching the specified parameters.
 
 > Get current number of viewers for all videos belonging to the site group 
 
 ```shell
-curl "https://api.flowplayer.com/current" 
+curl "https://api.flowplayer.com/viewers" 
 ```
 
 > returns the the estimated number of viewers
 
 ```json
-{"views":250}
+{"viewers":250}
 ```
 
 > Get current number of viewers for one video 
 
 ```shell
-curl "https://api.flowplayer.com/current?id=360b8f49-3c98-4020-ac72-83f958405239" 
+curl "https://api.flowplayer.com/viewers?id=360b8f49-3c98-4020-ac72-83f958405239" 
 ```
 
 > Get current number of viewers for two videos 
 
 ```shell
-curl "https://api.flowplayer.com/current?id=[360b8f49-3c98-4020-ac72-83f958405239,00048d7e-7ffb-46ee-ae21-e49b3668fea8]" 
+curl "https://api.flowplayer.com/viewers?id=[360b8f49-3c98-4020-ac72-83f958405239,00048d7e-7ffb-46ee-ae21-e49b3668fea8]" 
 ```
 
 ### HTTP Request
 
-`/videos/:id/current`
+`GET https://api.flowplayer.com/viewers`
 
 ### Request parameters
 
@@ -95,6 +95,62 @@ HTTP status | Description
 ----------- | --------------------------------------------
 404         | if the specified site or video is not found
 
+## Videos with viewers
+
+This endpoint returns the top videos having viewers at the moment. Maximum 100 videos will be returned, and the amount
+is less than this if fewer videos have viewers.
+
+> Get videos with most viewers
+
+```shell
+curl "https://api.flowplayer.com/viewers/videos"
+```
+
+> Returns a list of videos in decreasing `viewers` count.
+
+```json
+[
+    	{
+    		"siteId": "54af42d8-b41d-4efc-b355-38d879820184",
+    		"id": "60842d37-8e2f-4709-bacf-aebf6e4d9299",
+    		"viewers": 31
+    	},
+    	{
+    		"siteId": "54af42d8-b41d-4efc-b355-38d879820184",
+    		"id": "f1e38ef5-a98c-41d5-81cb-523bf0f2fa59",
+    		"viewers": 27
+    	},
+    	{
+    		"siteId": "54af42d8-b41d-4efc-b355-38d879820184",
+    		"id": "6ebeec02-1f6c-45ef-a50e-eeaae4370da5",
+    		"viewers": 24
+    	},
+    	{
+    		"siteId": "54af42d8-b41d-4efc-b355-38d879820184",
+    		"id": "89a371e5-da85-4160-a913-b82b9a0e6b4c",
+    		"viewers": 23
+    	}
+]
+```
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/viewers/videos`
+
+
+> Get videos with most viewers for a specific site
+
+```shell
+curl "https://api.flowplayer.com/viewers/videos?siteId=54af42d8-b41d-4efc-b355-38d879820184"
+```
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+id        | optional video ID, or a list of several IDs 
+site      | optional site ID, or a list of site IDs
+
 ## Intervals
 
 This endpoint returns view and display counts for specified time intervals.
@@ -102,7 +158,7 @@ This endpoint returns view and display counts for specified time intervals.
 > Get data for today, with a comparison to yesterday.
 
 ```shell
-curl "https://api.flowplayer.com/interval" 
+curl "https://api.flowplayer.com/intervals" 
 ```
 
 > Returns an array with two entries: One for today and one for yesterday. On 2017-12-19 it returned following:
@@ -145,7 +201,7 @@ curl "https://api.flowplayer.com/interval"
 > Get hourly stats for three hours, comparing them to the previous three hours.
 
 ```shell
-curl "https://api.flowplayer.com/interval?start=2017-12-01T00&end=2017-12-01T03"
+curl "https://api.flowplayer.com/intervals?start=2017-12-01T00&end=2017-12-01T03"
 ```
 
 > Returns two intervals, one for the queried time range between 2017-12-01T00 and end=2017-12-01T03, and another interval
@@ -217,6 +273,10 @@ is automatically added for a second three hour segment before the queried start 
 curl "https://api.flowplayer.com/intervals?start=2017-12-01&end=2017-12-17&previous=false"
 ```
 
+### HTTP Request
+
+`GET https://api.flowplayer.com/intervals`
+
 ### Request parameters
 
 The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
@@ -228,4 +288,4 @@ id        | optional video ID, or a list of several IDs
 site      | optional site ID, or a list of site IDs
 start     | optional start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 end       | optional end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
-   
+
