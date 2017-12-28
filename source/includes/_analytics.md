@@ -289,3 +289,59 @@ site      | optional site ID, or a list of site IDs
 start     | optional start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 end       | optional end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 
+
+## Popular videos
+
+This endpoint returns videos having the largest amount of views.
+
+> Get data for today, with a comparison to yesterday.
+
+```shell
+curl "https://api.flowplayer.com/views" 
+```
+
+> Returns the IDs and view counts of the 10 most popular videos
+
+```json
+ [
+    	{
+    		"id": "360b8f49-3c98-4020-ac72-83f958405239",
+    		"views": 252863
+    	},
+    	{
+    		"id": "3de6843f-2a65-46bd-a899-753d813f22c7",
+    		"views": 227743
+    	},
+    	{
+    		"id": "9242781d-149e-468c-bc80-b383bc6fd73d",
+    		"views": 210430
+    	},
+    	{
+    		"id": "8ed589c1-9b88-4040-81f7-c063fcf139a2",
+    		"views": 198156
+    	},
+    	{
+    		"id": "666f6532-8b6e-4ccf-84a0-0916ab827a24",
+    		"views": 192380
+    	},
+    	{
+    		"id": "075d123a-8e58-4b05-b505-5f5ca8244a5d",
+    		"views": 191079
+    	},
+    	{
+    		"id": "0548e44c-253a-4bb0-bf89-4f3d83b95dde",
+    		"views": 189647
+    	},
+    	{
+    		"id": "6ebeec02-1f6c-45ef-a50e-eeaae4370da5",
+    		"views": 184121
+    	},
+    	{
+    		"id": "89a371e5-da85-4160-a913-b82b9a0e6b4c",
+    		"views": 181421
+    	},
+    	{
+    		"id": "bba4d3d9-ea9c-452f-83c3-e577c26a1784",
+    		"views": 180103
+    	}
+```
