@@ -11,12 +11,7 @@ these 100 segments.
 > Get analytics for video with ID 360b8f49-3c98-4020-ac72-83f958405239
 
 ```shell
-curl "https://api.flowplayer.com/videos/360b8f49-3c98-4020-ac72-83f958405239" \
-     -H 'Content-Type: application/json; charset=utf-8' \
-     -d $'{
-  "end": "2017-12-31T00",
-  "start": "2017-12-01T00"
-}'
+curl "https://api.flowplayer.com/analytics/videos/360b8f49-3c98-4020-ac72-83f958405239?start=2017-12-01&end=2017-12-04"
 ```
 
 > Returns display and view counts, and segments statistics as follows
@@ -37,7 +32,7 @@ curl "https://api.flowplayer.com/videos/360b8f49-3c98-4020-ac72-83f958405239" \
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/videos/:id`
+`GET https://api.flowplayer.com/analytics/videos/:id`
 
 ### Request parameters
 
@@ -54,7 +49,7 @@ This endpoint returns the current viewer count matching the specified parameters
 > Get current number of viewers for all videos belonging to the site group 
 
 ```shell
-curl "https://api.flowplayer.com/viewers" 
+curl "https://api.flowplayer.com/analytics/viewers" 
 ```
 
 > returns the the estimated number of viewers
@@ -66,18 +61,18 @@ curl "https://api.flowplayer.com/viewers"
 > Get current number of viewers for one video 
 
 ```shell
-curl "https://api.flowplayer.com/viewers?id=360b8f49-3c98-4020-ac72-83f958405239" 
+curl "https://api.flowplayer.com/analytics/viewers?id=360b8f49-3c98-4020-ac72-83f958405239" 
 ```
 
 > Get current number of viewers for two videos 
 
 ```shell
-curl "https://api.flowplayer.com/viewers?id=[360b8f49-3c98-4020-ac72-83f958405239,00048d7e-7ffb-46ee-ae21-e49b3668fea8]" 
+curl "https://api.flowplayer.com/analytics/viewers?id=[360b8f49-3c98-4020-ac72-83f958405239,00048d7e-7ffb-46ee-ae21-e49b3668fea8]" 
 ```
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/viewers`
+`GET https://api.flowplayer.com/analytics/viewers`
 
 ### Request parameters
 
@@ -87,7 +82,7 @@ in the account's site group, if no `site` not `id` is passed as a parameter.
 Parameter | Description
 --------- | -------------------------------------
 id        | optional video ID, or a list of several IDs 
-site      | optional site ID, or a list of site IDs
+siteId    | optional site ID, or a list of site IDs
 
 ### Errors
 
@@ -103,7 +98,7 @@ is less than this if fewer videos have viewers.
 > Get videos with most viewers
 
 ```shell
-curl "https://api.flowplayer.com/viewers/videos"
+curl "https://api.flowplayer.com/analytics/viewers/videos"
 ```
 
 > Returns a list of videos in decreasing `viewers` count.
@@ -135,13 +130,13 @@ curl "https://api.flowplayer.com/viewers/videos"
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/viewers/videos`
+`GET https://api.flowplayer.com/analytics/viewers/videos`
 
 
 > Get videos with most viewers for a specific site
 
 ```shell
-curl "https://api.flowplayer.com/viewers/videos?siteId=54af42d8-b41d-4efc-b355-38d879820184"
+curl "https://api.flowplayer.com/analytics/viewers/videos?siteId=54af42d8-b41d-4efc-b355-38d879820184"
 ```
 
 ### Request parameters
@@ -149,7 +144,7 @@ curl "https://api.flowplayer.com/viewers/videos?siteId=54af42d8-b41d-4efc-b355-3
 Parameter | Description
 --------- | -------------------------------------
 id        | optional video ID, or a list of several IDs 
-site      | optional site ID, or a list of site IDs
+siteId    | optional site ID, or a list of site IDs
 
 ## Intervals
 
@@ -158,7 +153,7 @@ This endpoint returns view and display counts for specified time intervals.
 > Get data for today, with a comparison to yesterday.
 
 ```shell
-curl "https://api.flowplayer.com/intervals" 
+curl "https://api.flowplayer.com/analytics/intervals" 
 ```
 
 > Returns an array with two entries: One for today and one for yesterday. On 2017-12-19 it returned following:
@@ -201,7 +196,7 @@ curl "https://api.flowplayer.com/intervals"
 > Get hourly stats for three hours, comparing them to the previous three hours.
 
 ```shell
-curl "https://api.flowplayer.com/intervals?start=2017-12-01T00&end=2017-12-01T03"
+curl "https://api.flowplayer.com/analytics/intervals?start=2017-12-01T00&end=2017-12-01T03"
 ```
 
 > Returns two intervals, one for the queried time range between 2017-12-01T00 and end=2017-12-01T03, and another interval
@@ -270,12 +265,12 @@ is automatically added for a second three hour segment before the queried start 
 > To exclude the automatically added previous time range, specify `previous=false`.
 
 ```shell
-curl "https://api.flowplayer.com/intervals?start=2017-12-01&end=2017-12-17&previous=false"
+curl "https://api.flowplayer.com/analytics/intervals?start=2017-12-01&end=2017-12-17&previous=false"
 ```
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/intervals`
+`GET https://api.flowplayer.com/analytics/intervals`
 
 ### Request parameters
 
@@ -285,7 +280,7 @@ in the account's site group, if no `site` not `id` is passed as a parameter.
 Parameter | Description
 --------- | -------------------------------------
 id        | optional video ID, or a list of several IDs 
-site      | optional site ID, or a list of site IDs
+siteId    | optional site ID, or a list of site IDs
 start     | optional start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 end       | optional end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 
@@ -294,10 +289,10 @@ end       | optional end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 
 This endpoint returns videos having the largest amount of views.
 
-> Get data for today, with a comparison to yesterday.
+> Get the most popular videos
 
 ```shell
-curl "https://api.flowplayer.com/views" 
+curl "https://api.flowplayer.com/analytics/views" 
 ```
 
 > Returns the IDs and view counts of the 10 most popular videos
@@ -344,4 +339,47 @@ curl "https://api.flowplayer.com/views"
     		"id": "bba4d3d9-ea9c-452f-83c3-e577c26a1784",
     		"views": 180103
     	}
+]
 ```
+
+> Get the most popular videos in a specific site and in a specified time range, limiting the results to the top 3 videos.
+
+```shell
+curl "https://api.flowplayer.com/analytics/views?siteId=54af42d8-b41d-4efc-b355-38d879820184&size=3&start=2017-12-01&end=2017-12-31"   
+```
+
+> Returns the three videos with most views in site `54af42d8-b41d-4efc-b355-38d879820184` during December 2017
+
+```json
+ [
+    	{
+    		"id": "360b8f49-3c98-4020-ac72-83f958405239",
+    		"views": 178606
+    	},
+    	{
+    		"id": "6ebeec02-1f6c-45ef-a50e-eeaae4370da5",
+    		"views": 160528
+    	},
+    	{
+    		"id": "89a371e5-da85-4160-a913-b82b9a0e6b4c",
+    		"views": 157764
+    	}
+ ]
+```
+
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/analytics/views`
+
+### Request parameters
+
+The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
+in the account's site group, if no `site` not `id` is passed as a parameter. 
+
+Parameter | Description
+--------- | -------------------------------------
+id        | optional video ID, or a list of several IDs 
+siteId    | optional site ID, or a list of site IDs
+start     | optional start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+end       | optional end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
