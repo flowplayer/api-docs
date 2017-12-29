@@ -1,4 +1,4 @@
-# Video analytics (VOD)
+# Analytics for VOD
 
 ## Get analytics for a specific video
 
@@ -367,7 +367,6 @@ curl "https://api.flowplayer.com/analytics/views?siteId=54af42d8-b41d-4efc-b355-
  ]
 ```
 
-
 ### HTTP Request
 
 `GET https://api.flowplayer.com/analytics/views`
@@ -383,3 +382,53 @@ id        | optional video ID, or a list of several IDs
 siteId    | optional site ID, or a list of site IDs
 start     | optional start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 end       | optional end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+
+
+# Analytics for live broadcasts
+
+## Currently running live casts
+
+This endpoint returns the viewer counts of all broadcasts that are current live and public.
+
+> Get current live viewer counts
+
+```shell
+curl "https://api.flowplayer.com/analytics/live"
+```
+
+> returns all livecasts that currently have viewers
+
+```bash
+ [
+    	{
+    		"siteId": "e426f62e-c59c-4820-a3e2-83e33a79f65d",
+    		"id": "a84c6ba2-54cb-4e09-bfb8-20eb9f68c814",
+    		"views": 587
+    	},
+    	{
+    		"siteId": "b8bb09c1-fa63-4702-a3e5-bb4107f3344e",
+    		"id": "a8f90631-da13-4959-be0a-f2cde9ea9196",
+    		"views": 144
+    	},
+    	{
+    		"siteId": "7f4d50f9-7a1a-4e89-aa19-5bcd8ea8bf2e",
+    		"id": "22f7356a-515c-4842-af87-cbbe117c9a8d",
+    		"views": 24
+    	}
+    ]
+```
+
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/analytics/live`
+
+### Request parameters
+
+The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
+in the account's site group, if no `site` not `id` is passed as a parameter. 
+
+Parameter | Description
+--------- | -------------------------------------
+id        | optional live ID, or a list of several IDs 
+siteId    | optional site ID, or a list of site IDs
