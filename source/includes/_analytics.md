@@ -393,7 +393,7 @@ This endpoint returns the viewer counts of all broadcasts that are current live 
 > Get current live viewer counts
 
 ```shell
-curl "https://api.flowplayer.com/analytics/live"
+curl "https://api.flowplayer.com/analytics/live/casts"
 ```
 
 > returns all livecasts that currently have viewers
@@ -421,7 +421,7 @@ curl "https://api.flowplayer.com/analytics/live"
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/live`
+`GET https://api.flowplayer.com/analytics/live/casts`
 
 ### Request parameters
 
@@ -432,3 +432,35 @@ Parameter | Description
 --------- | -------------------------------------
 id        | optional live ID, or a list of several IDs 
 siteId    | optional site ID, or a list of site IDs
+
+## Live view and display counts
+
+This endpoint returns the sum of views and displays over all livecasts, or over specified site(s) or
+live ID(s).
+
+> Get the counts over all live casts in all sites.
+
+```shell
+curl "https://api.flowplayer.com/analytics/live/summary"
+```
+
+> returns the current `views` and `displays` numbers.
+
+```json
+ {
+    	"views": 714539,
+    	"displays": 1392500
+ }
+```
+
+> Get the current `views` and `displays` numbers for one live cast
+
+```shell
+curl "https://api.flowplayer.com/analytics/live/summary?id=a84c6ba2-54cb-4e09-bfb8-20eb9f68c814"
+```
+
+> Get the current `views` and `displays` numbers for one live cast in the specified time range
+
+```shell
+curl "https://api.flowplayer.com/analytics/live/summary?id=a84c6ba2-54cb-4e09-bfb8-20eb9f68c814"
+```
