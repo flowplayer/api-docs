@@ -361,6 +361,530 @@ curl -X POST https://api.flowplayer.org/auth/tokens
 </tr>
 </tbody></table>
 
+          <h1 id="analytics-for-vod">Analytics for VOD</h1>
+
+<h2 id="get-analytics-for-a-specific-video">Get analytics for a specific video</h2>
+
+<p>This endpoint is used to query anlytics for a specific video. It returns view and display counts and segments view counts.
+A <code class="prettyprint">view</code> is counted when playback starts and a <code class="prettyprint">display</code> happens when the video player is shown for this video.</p>
+
+<p>The video timeline is divided into 100 <code class="prettyprint">segments</code>. The return value of this endpoint includes view counts for each of 
+these 100 segments.</p>
+
+<blockquote>
+<p>Get analytics for video with ID 360b8f49-3c98-4020-ac72-83f958405239</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/videos/360b8f49-3c98-4020-ac72-83f958405239?start=2017-12-01&amp;end=2017-12-04"</span>
+</code></pre>
+<blockquote>
+<p>Returns display and view counts, and segments statistics as follows</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"displayViews"</span><span class="p">:</span><span class="w"> 
+   </span><span class="p">{</span><span class="w"> </span><span class="s2">"display"</span><span class="p">:</span><span class="w"> </span><span class="mi">109667</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"view"</span><span class="p">:</span><span class="w"> </span><span class="mi">86886</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"views_desk"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"views_mob"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"views_tab"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"views_os_mob_android"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"views_os_mob_ios"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"views_os_mob_winph"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="p">},</span><span class="w">
+     </span><span class="s2">"segments"</span><span class="p">:[</span><span class="mi">86048</span><span class="p">,</span><span class="mi">19772</span><span class="p">,</span><span class="mi">14731</span><span class="p">,</span><span class="mi">12245</span><span class="p">,</span><span class="mi">10657</span><span class="p">,</span><span class="mi">9521</span><span class="p">,</span><span class="mi">8726</span><span class="p">,</span><span class="mi">8010</span><span class="p">,</span><span class="mi">7473</span><span class="p">,</span><span class="mi">6977</span><span class="p">,</span><span class="mi">6562</span><span class="p">,</span><span class="mi">6261</span><span class="p">,</span><span class="mi">5973</span><span class="p">,</span><span class="mi">5719</span><span class="p">,</span><span class="mi">5521</span><span class="p">,</span><span class="mi">5314</span><span class="p">,</span><span class="mi">5135</span><span class="p">,</span><span class="mi">4968</span><span class="p">,</span><span class="mi">4833</span><span class="p">,</span><span class="mi">4711</span><span class="p">,</span><span class="mi">4590</span><span class="p">,</span><span class="mi">4481</span><span class="p">,</span><span class="mi">4382</span><span class="p">,</span><span class="mi">4287</span><span class="p">,</span><span class="mi">4190</span><span class="p">,</span><span class="mi">4105</span><span class="p">,</span><span class="mi">4021</span><span class="p">,</span><span class="mi">3946</span><span class="p">,</span><span class="mi">3882</span><span class="p">,</span><span class="mi">3821</span><span class="p">,</span><span class="mi">3762</span><span class="p">,</span><span class="mi">3691</span><span class="p">,</span><span class="mi">3638</span><span class="p">,</span><span class="mi">3600</span><span class="p">,</span><span class="mi">3561</span><span class="p">,</span><span class="mi">3523</span><span class="p">,</span><span class="mi">3480</span><span class="p">,</span><span class="mi">3442</span><span class="p">,</span><span class="mi">3407</span><span class="p">,</span><span class="mi">3363</span><span class="p">,</span><span class="mi">3313</span><span class="p">,</span><span class="mi">3277</span><span class="p">,</span><span class="mi">3232</span><span class="p">,</span><span class="mi">3197</span><span class="p">,</span><span class="mi">3172</span><span class="p">,</span><span class="mi">3152</span><span class="p">,</span><span class="mi">3120</span><span class="p">,</span><span class="mi">3086</span><span class="p">,</span><span class="mi">3053</span><span class="p">,</span><span class="mi">3028</span><span class="p">,</span><span class="mi">3006</span><span class="p">,</span><span class="mi">2983</span><span class="p">,</span><span class="mi">2957</span><span class="p">,</span><span class="mi">2937</span><span class="p">,</span><span class="mi">2913</span><span class="p">,</span><span class="mi">2884</span><span class="p">,</span><span class="mi">2863</span><span class="p">,</span><span class="mi">2835</span><span class="p">,</span><span class="mi">2812</span><span class="p">,</span><span class="mi">2787</span><span class="p">,</span><span class="mi">2765</span><span class="p">,</span><span class="mi">2740</span><span class="p">,</span><span class="mi">2725</span><span class="p">,</span><span class="mi">2698</span><span class="p">,</span><span class="mi">2672</span><span class="p">,</span><span class="mi">2650</span><span class="p">,</span><span class="mi">2629</span><span class="p">,</span><span class="mi">2609</span><span class="p">,</span><span class="mi">2585</span><span class="p">,</span><span class="mi">2580</span><span class="p">,</span><span class="mi">2562</span><span class="p">,</span><span class="mi">2541</span><span class="p">,</span><span class="mi">2527</span><span class="p">,</span><span class="mi">2513</span><span class="p">,</span><span class="mi">2499</span><span class="p">,</span><span class="mi">2484</span><span class="p">,</span><span class="mi">2462</span><span class="p">,</span><span class="mi">2446</span><span class="p">,</span><span class="mi">2428</span><span class="p">,</span><span class="mi">2416</span><span class="p">,</span><span class="mi">2400</span><span class="p">,</span><span class="mi">2386</span><span class="p">,</span><span class="mi">2381</span><span class="p">,</span><span class="mi">2366</span><span class="p">,</span><span class="mi">2349</span><span class="p">,</span><span class="mi">2327</span><span class="p">,</span><span class="mi">2318</span><span class="p">,</span><span class="mi">2299</span><span class="p">,</span><span class="mi">2282</span><span class="p">,</span><span class="mi">2273</span><span class="p">,</span><span class="mi">2266</span><span class="p">,</span><span class="mi">2250</span><span class="p">,</span><span class="mi">2242</span><span class="p">,</span><span class="mi">2231</span><span class="p">,</span><span class="mi">2216</span><span class="p">,</span><span class="mi">2203</span><span class="p">,</span><span class="mi">2191</span><span class="p">,</span><span class="mi">2174</span><span class="p">,</span><span class="mi">2160</span><span class="p">,</span><span class="mi">2146</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.flowplayer.com/analytics/videos/:id</code></p>
+
+<h3 id="request-parameters">Request parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>start</td>
+<td>Optional starting date/time of the interval, format <code class="prettyprint">YYY-MM-DDTHH</code> or <code class="prettyprint">YYY-MM-DD</code></td>
+</tr>
+<tr>
+<td>end</td>
+<td>optional ending date/time of the interval, format <code class="prettyprint">YYY-MM-DDTHH</code> or <code class="prettyprint">YYY-MM-DD</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="current-number-of-viewers">Current number of viewers</h2>
+
+<p>This endpoint returns the current viewer count matching the specified parameters.</p>
+
+<blockquote>
+<p>Get current number of viewers for all videos belonging to the site group </p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/viewers"</span> 
+</code></pre>
+<blockquote>
+<p>returns the the estimated number of viewers</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"viewers"</span><span class="p">:</span><span class="mi">250</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Get current number of viewers for one video </p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/viewers?id=360b8f49-3c98-4020-ac72-83f958405239"</span> 
+</code></pre>
+<blockquote>
+<p>Get current number of viewers for two videos </p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/viewers?id=[360b8f49-3c98-4020-ac72-83f958405239,00048d7e-7ffb-46ee-ae21-e49b3668fea8]"</span> 
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.flowplayer.com/analytics/viewers</code></p>
+
+<h3 id="request-parameters">Request parameters</h3>
+
+<p>The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
+in the account&rsquo;s site group, if no <code class="prettyprint">site</code> not <code class="prettyprint">id</code> is passed as a parameter. </p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>optional video ID, or a list of several IDs</td>
+</tr>
+<tr>
+<td>siteId</td>
+<td>optional site ID, or a list of site IDs</td>
+</tr>
+</tbody></table>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>HTTP status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>404</td>
+<td>if the specified site or video is not found</td>
+</tr>
+</tbody></table>
+
+<h2 id="videos-with-viewers">Videos with viewers</h2>
+
+<p>This endpoint returns the top videos having viewers at the moment. Maximum 100 videos will be returned, and the amount
+is less than this if fewer videos have viewers.</p>
+
+<blockquote>
+<p>Get videos with most viewers</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/viewers/videos"</span>
+</code></pre>
+<blockquote>
+<p>Returns a list of videos in decreasing <code class="prettyprint">viewers</code> count.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"siteId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54af42d8-b41d-4efc-b355-38d879820184"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60842d37-8e2f-4709-bacf-aebf6e4d9299"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewers"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"siteId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54af42d8-b41d-4efc-b355-38d879820184"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f1e38ef5-a98c-41d5-81cb-523bf0f2fa59"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewers"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"siteId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54af42d8-b41d-4efc-b355-38d879820184"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6ebeec02-1f6c-45ef-a50e-eeaae4370da5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewers"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"siteId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54af42d8-b41d-4efc-b355-38d879820184"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89a371e5-da85-4160-a913-b82b9a0e6b4c"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"viewers"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.flowplayer.com/analytics/viewers/videos</code></p>
+
+<blockquote>
+<p>Get videos with most viewers for a specific site</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/viewers/videos?siteId=54af42d8-b41d-4efc-b355-38d879820184"</span>
+</code></pre>
+<h3 id="request-parameters">Request parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>optional video ID, or a list of several IDs</td>
+</tr>
+<tr>
+<td>siteId</td>
+<td>optional site ID, or a list of site IDs</td>
+</tr>
+</tbody></table>
+
+<h2 id="intervals">Intervals</h2>
+
+<p>This endpoint returns view and display counts for specified time intervals.</p>
+
+<blockquote>
+<p>Get data for today, with a comparison to yesterday.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/intervals"</span> 
+</code></pre>
+<blockquote>
+<p>Returns an array with two entries: One for today and one for yesterday. On 2017-12-19 it returned following:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-17T11:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-18T11:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-18T11:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">69055</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">108993</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">108993</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">69055</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-18T11:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-19T11:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-19T11:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">137152</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">212893</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">212893</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">137152</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Get hourly stats for three hours, comparing them to the previous three hours.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/intervals?start=2017-12-01T00&amp;end=2017-12-01T03"</span>
+</code></pre>
+<blockquote>
+<p>Returns two intervals, one for the queried time range between 2017-12-01T00 and end=2017-12-01T03, and another interval
+is automatically added for a second three hour segment before the queried start time</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-30T20:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-30T21:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">16522</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">24612</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-30T22:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">4832</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">7162</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-30T23:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">2002</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">3531</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">35305</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">23356</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"date_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T03:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"intervals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T01:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">1507</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">2684</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T02:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">244</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">439</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-01T03:00:00.000Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">3123</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">1751</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>To exclude the automatically added previous time range, specify <code class="prettyprint">previous=false</code>.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/intervals?start=2017-12-01&amp;end=2017-12-17&amp;previous=false"</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.flowplayer.com/analytics/intervals</code></p>
+
+<h3 id="request-parameters">Request parameters</h3>
+
+<p>The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
+in the account&rsquo;s site group, if no <code class="prettyprint">site</code> not <code class="prettyprint">id</code> is passed as a parameter. </p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>optional video ID, or a list of several IDs</td>
+</tr>
+<tr>
+<td>siteId</td>
+<td>optional site ID, or a list of site IDs</td>
+</tr>
+<tr>
+<td>start</td>
+<td>optional start date and time, format <code class="prettyprint">YYY-MM-DDTHH</code> or <code class="prettyprint">YYY-MM-DD</code></td>
+</tr>
+<tr>
+<td>end</td>
+<td>optional end date and time, format <code class="prettyprint">YYY-MM-DDTHH</code> or <code class="prettyprint">YYY-MM-DD</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="popular-videos">Popular videos</h2>
+
+<p>This endpoint returns videos having the largest amount of views.</p>
+
+<blockquote>
+<p>Get the most popular videos</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/views"</span> 
+</code></pre>
+<blockquote>
+<p>Returns the IDs and view counts of the 10 most popular videos</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"360b8f49-3c98-4020-ac72-83f958405239"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">252863</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3de6843f-2a65-46bd-a899-753d813f22c7"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">227743</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9242781d-149e-468c-bc80-b383bc6fd73d"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">210430</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ed589c1-9b88-4040-81f7-c063fcf139a2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">198156</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"666f6532-8b6e-4ccf-84a0-0916ab827a24"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">192380</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"075d123a-8e58-4b05-b505-5f5ca8244a5d"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">191079</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0548e44c-253a-4bb0-bf89-4f3d83b95dde"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">189647</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6ebeec02-1f6c-45ef-a50e-eeaae4370da5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">184121</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89a371e5-da85-4160-a913-b82b9a0e6b4c"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">181421</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bba4d3d9-ea9c-452f-83c3-e577c26a1784"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">180103</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Get the most popular videos in a specific site and in a specified time range, limiting the results to the top 3 videos.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/views?siteId=54af42d8-b41d-4efc-b355-38d879820184&amp;size=3&amp;start=2017-12-01&amp;end=2017-12-31"</span>   
+</code></pre>
+<blockquote>
+<p>Returns the three videos with most views in site <code class="prettyprint">54af42d8-b41d-4efc-b355-38d879820184</code> during December 2017</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"360b8f49-3c98-4020-ac72-83f958405239"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">178606</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6ebeec02-1f6c-45ef-a50e-eeaae4370da5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">160528</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89a371e5-da85-4160-a913-b82b9a0e6b4c"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">157764</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.flowplayer.com/analytics/views</code></p>
+
+<h3 id="request-parameters">Request parameters</h3>
+
+<p>The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
+in the account&rsquo;s site group, if no <code class="prettyprint">site</code> not <code class="prettyprint">id</code> is passed as a parameter. </p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>optional video ID, or a list of several IDs</td>
+</tr>
+<tr>
+<td>siteId</td>
+<td>optional site ID, or a list of site IDs</td>
+</tr>
+<tr>
+<td>start</td>
+<td>optional start date and time, format <code class="prettyprint">YYY-MM-DDTHH</code> or <code class="prettyprint">YYY-MM-DD</code></td>
+</tr>
+<tr>
+<td>end</td>
+<td>optional end date and time, format <code class="prettyprint">YYY-MM-DDTHH</code> or <code class="prettyprint">YYY-MM-DD</code></td>
+</tr>
+</tbody></table>
+
+<h1 id="analytics-for-live-broadcasts">Analytics for live broadcasts</h1>
+
+<h2 id="currently-running-live-casts">Currently running live casts</h2>
+
+<p>This endpoint returns the viewer counts of all broadcasts that are current live and public.</p>
+
+<blockquote>
+<p>Get current live viewer counts</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/live/casts"</span>
+</code></pre>
+<blockquote>
+<p>returns all livecasts that currently have viewers</p>
+</blockquote>
+<pre class="highlight shell"><code> <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"siteId"</span>: <span class="s2">"e426f62e-c59c-4820-a3e2-83e33a79f65d"</span>,
+            <span class="s2">"id"</span>: <span class="s2">"a84c6ba2-54cb-4e09-bfb8-20eb9f68c814"</span>,
+            <span class="s2">"views"</span>: 587
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"siteId"</span>: <span class="s2">"b8bb09c1-fa63-4702-a3e5-bb4107f3344e"</span>,
+            <span class="s2">"id"</span>: <span class="s2">"a8f90631-da13-4959-be0a-f2cde9ea9196"</span>,
+            <span class="s2">"views"</span>: 144
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"siteId"</span>: <span class="s2">"7f4d50f9-7a1a-4e89-aa19-5bcd8ea8bf2e"</span>,
+            <span class="s2">"id"</span>: <span class="s2">"22f7356a-515c-4842-af87-cbbe117c9a8d"</span>,
+            <span class="s2">"views"</span>: 24
+        <span class="o">}</span>
+    <span class="o">]</span>
+</code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.flowplayer.com/analytics/live/casts</code></p>
+
+<h3 id="request-parameters">Request parameters</h3>
+
+<p>The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
+in the account&rsquo;s site group, if no <code class="prettyprint">site</code> not <code class="prettyprint">id</code> is passed as a parameter. </p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>optional live ID, or a list of several IDs</td>
+</tr>
+<tr>
+<td>siteId</td>
+<td>optional site ID, or a list of site IDs</td>
+</tr>
+</tbody></table>
+
+<h2 id="live-view-and-display-counts">Live view and display counts</h2>
+
+<p>This endpoint returns the sum of views and displays over all livecasts, or over specified site(s) or
+live ID(s).</p>
+
+<blockquote>
+<p>Get the counts over all live casts in all sites.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/live/summary"</span>
+</code></pre>
+<blockquote>
+<p>returns the current <code class="prettyprint">views</code> and <code class="prettyprint">displays</code> numbers.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">714539</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1392500</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Get the current <code class="prettyprint">views</code> and <code class="prettyprint">displays</code> numbers for one live cast</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/live/summary?id=a84c6ba2-54cb-4e09-bfb8-20eb9f68c814"</span>
+</code></pre>
+<blockquote>
+<p>Get the current <code class="prettyprint">views</code> and <code class="prettyprint">displays</code> numbers for one live cast in the specified time range</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.flowplayer.com/analytics/live/summary?id=a84c6ba2-54cb-4e09-bfb8-20eb9f68c814"</span>
+</code></pre>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
