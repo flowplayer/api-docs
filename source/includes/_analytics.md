@@ -73,10 +73,10 @@ curl "https://api.flowplayer.com/analytics/viewers"
 curl "https://api.flowplayer.com/analytics/viewers?id=360b8f49-3c98-4020-ac72-83f958405239" 
 ```
 
-> Get current number of viewers for two videos 
+> Get current number of viewers for two videos. Several video IDs can be passed by repeating the `id` request parameter.
 
 ```shell
-curl "https://api.flowplayer.com/analytics/viewers?id=[360b8f49-3c98-4020-ac72-83f958405239,00048d7e-7ffb-46ee-ae21-e49b3668fea8]" 
+curl "https://api.flowplayer.com/analytics/viewers?id=360b8f49-3c98-4020-ac72-83f958405239&id=00048d7e-7ffb-46ee-ae21-e49b3668fea8" 
 ```
 
 ### HTTP Request
