@@ -480,7 +480,7 @@ This endpoint returns a time histogram of a currently running livecast. It retur
 
 > Get the histogram for the specified livecast
 
-```
+``` shell
 curl "https://api.flowplayer.com/analytics/live/3434b386-eda1-4041-b095-3151ff0ba1a7/histogram"
 ``` 
 
