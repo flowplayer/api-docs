@@ -527,7 +527,8 @@ curl "https://api.flowplayer.com/analytics/live/summary?id=a84c6ba2-54cb-4e09-bf
 
 ## Live histogram
 
-This endpoint returns a time histogram of a currently running livecast. It returns viewer counts by time in the livecast's timeline.
+This endpoint returns a time histogram of a currently running livecast. It returns viewer counts for every minute in the 
+livecast's timeline.
 
 > Get the histogram for the specified livecast
 
