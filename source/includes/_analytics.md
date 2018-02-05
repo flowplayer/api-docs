@@ -301,7 +301,7 @@ This endpoint returns videos having the largest amount of views.
 > Get the most popular videos
 
 ```shell
-curl "https://api.flowplayer.com/analytics/views" 
+curl "https://api.flowplayer.com/analytics/views/videos" 
 ```
 
 > Returns the IDs and view counts of the 10 most popular videos
@@ -354,7 +354,7 @@ curl "https://api.flowplayer.com/analytics/views"
 > Get the most popular videos in a specific site and in a specified time range, limiting the results to the top 3 videos.
 
 ```shell
-curl "https://api.flowplayer.com/analytics/views?siteId=54af42d8-b41d-4efc-b355-38d879820184&size=3&start=2017-12-01&end=2017-12-31"   
+curl "https://api.flowplayer.com/analytics/views/videos?siteId=54af42d8-b41d-4efc-b355-38d879820184&size=3&start=2017-12-01&end=2017-12-31"   
 ```
 
 > Returns the three videos with most views in site `54af42d8-b41d-4efc-b355-38d879820184` during December 2017
@@ -378,7 +378,55 @@ curl "https://api.flowplayer.com/analytics/views?siteId=54af42d8-b41d-4efc-b355-
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/views`
+`GET https://api.flowplayer.com/analytics/views/videos`
+
+### Request parameters
+
+The query can be restricted to one or more videos, and/or to one or more sites. The query will match all videos in all sites
+in the account's site group, if no `site` not `id` is passed as a parameter. 
+
+Parameter | Description
+--------- | -------------------------------------
+id        | optional video ID, or a list of several IDs
+category  | optional category ID, or a list of categories 
+siteId    | optional site ID, or a list of site IDs
+start     | optional start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+end       | optional end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+size      | optional maximum number of videos to be returned, 10 is returned if size is not specified
+
+
+## Popular categories
+
+This endpoint returns videos having the largest amount of views.
+
+> Get the top 3 most popular videos
+
+```shell
+curl "https://api.flowplayer.com/analytics/views/categories?size=3" 
+```
+
+> Returns the IDs and view counts of the 3 most popular categories
+
+```json
+ [
+    	{
+    		"category": "360b8f49-3c98-4020-ac72-83f958405239",
+    		"views": 252863
+    	},
+    	{
+    		"category": "3de6843f-2a65-46bd-a899-753d813f22c7",
+    		"views": 227743
+    	},
+    	{
+    		"category": "9242781d-149e-468c-bc80-b383bc6fd73d",
+    		"views": 210430
+    	}
+]
+```
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/analytics/views/categories`
 
 ### Request parameters
 
@@ -388,9 +436,12 @@ in the account's site group, if no `site` not `id` is passed as a parameter.
 Parameter | Description
 --------- | -------------------------------------
 id        | optional video ID, or a list of several IDs 
+category  | optional category ID, or a list of categories 
 siteId    | optional site ID, or a list of site IDs
 start     | optional start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 end       | optional end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+size      | optional maximum number of categories to be returned, 10 is returned if size is not specified
+
 
 
 # Analytics for live broadcasts
