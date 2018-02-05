@@ -58,7 +58,7 @@ This endpoint returns the current viewer count matching the specified parameters
 > Get current number of viewers for all videos belonging to the site group 
 
 ```shell
-curl "https://api.flowplayer.com/analytics/viewers" 
+curl "https://api.flowplayer.com/analytics/current/viewers" 
 ```
 
 > returns the the estimated number of viewers
@@ -70,18 +70,18 @@ curl "https://api.flowplayer.com/analytics/viewers"
 > Get current number of viewers for one video 
 
 ```shell
-curl "https://api.flowplayer.com/analytics/viewers?id=360b8f49-3c98-4020-ac72-83f958405239" 
+curl "https://api.flowplayer.com/analytics/current/viewers?id=360b8f49-3c98-4020-ac72-83f958405239" 
 ```
 
 > Get current number of viewers for two videos. Several video IDs can be passed by repeating the `id` request parameter.
 
 ```shell
-curl "https://api.flowplayer.com/analytics/viewers?id=360b8f49-3c98-4020-ac72-83f958405239&id=00048d7e-7ffb-46ee-ae21-e49b3668fea8" 
+curl "https://api.flowplayer.com/analytics/current/viewers?id=360b8f49-3c98-4020-ac72-83f958405239&id=00048d7e-7ffb-46ee-ae21-e49b3668fea8" 
 ```
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/viewers`
+`GET https://api.flowplayer.com/analytics/current/viewers`
 
 ### Request parameters
 
@@ -107,7 +107,7 @@ is less than this if fewer videos have viewers.
 > Get videos with most viewers
 
 ```shell
-curl "https://api.flowplayer.com/analytics/viewers/videos"
+curl "https://api.flowplayer.com/analytics/current/videos"
 ```
 
 > Returns a list of videos in decreasing `viewers` count.
@@ -139,13 +139,13 @@ curl "https://api.flowplayer.com/analytics/viewers/videos"
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/viewers/videos`
+`GET https://api.flowplayer.com/analytics/current/videos`
 
 
 > Get videos with most viewers for a specific site
 
 ```shell
-curl "https://api.flowplayer.com/analytics/viewers/videos?siteId=54af42d8-b41d-4efc-b355-38d879820184"
+curl "https://api.flowplayer.com/analytics/current/videos?siteId=54af42d8-b41d-4efc-b355-38d879820184"
 ```
 
 ### Request parameters
@@ -473,3 +473,61 @@ curl "https://api.flowplayer.com/analytics/live/summary?id=a84c6ba2-54cb-4e09-bf
 ```shell
 curl "https://api.flowplayer.com/analytics/live/summary?id=a84c6ba2-54cb-4e09-bfb8-20eb9f68c814"
 ```
+
+## Live histogram
+
+This endpoint returns a time histogram of a currently running livecast. It returns viewer counts by time in the livecast's timeline.
+
+> Get the histogram for the specified livecast
+
+```
+curl "https://api.flowplayer.com/analytics/live/3434b386-eda1-4041-b095-3151ff0ba1a7/histogram"
+``` 
+
+> returns a list of time points and their viewer counts
+
+``` json
+  [
+    	{
+    		"timestamp": 1517221020000,
+    		"time": "2018-01-29T10:17:00.000Z",
+    		"views": 205
+    	},
+    	{
+    		"timestamp": 1517221080000,
+    		"time": "2018-01-29T10:18:00.000Z",
+    		"views": 0250
+    	},
+    	{
+    		"timestamp": 1517221140000,
+    		"time": "2018-01-29T10:19:00.000Z",
+    		"views": 256
+    	},
+    	{
+    		"timestamp": 1517221200000,
+    		"time": "2018-01-29T10:20:00.000Z",
+    		"views": 345
+    	},
+    	{
+    		"timestamp": 1517221260000,
+    		"time": "2018-01-29T10:21:00.000Z",
+    		"views": 465
+    	},
+    	{
+    		"timestamp": 1517221320000,
+    		"time": "2018-01-29T10:22:00.000Z",
+    		"views": 912
+    	}
+    ]
+```
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/analytics/live/:id/histogram`
+
+### Request parameters
+
+
+Parameter | Description
+--------- | -------------------------------------
+id        | live ID 
