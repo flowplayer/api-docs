@@ -170,7 +170,7 @@ page_size        | `optional` - Page size for response, default value is `20`.
 search | `optional` - Search term for filtering the response. Searches `name`, `description` and `tags`.
 sort_by | `optional` - Sorting column for the response, default value is `created_at`. Possible values: `created_at`, `name` and `starttime`.
 sort_order | `optional` - Sorting order for the response, default value is `desc`. Possible values `asc` and `desc`
-
+filter | `optional` - Can be used to filter out livecasts from their starttimes. Possible values are `upcoming` or `recent`. `upcoming` will present all livecasts that have a starttime from 24h before now and forward and will be order with the one with earliest starttime first. `recent` will present all livecasts that have a starttime from 24h from now and before and will be order with the one with most recent starttime first.
 
 ### Response
 
