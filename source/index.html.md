@@ -12,7 +12,7 @@ toc_footers:
 includes:
   - errors
   - analytics
-  - livecast
+  - livestreams
   - livesources
 
 search: true
