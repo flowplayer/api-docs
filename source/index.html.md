@@ -14,6 +14,10 @@ includes:
   - analytics
   - livestreams
   - livesources
+  - playlists
+  - sitegroup
+  - site
+  - user
 
 search: true
 ---
