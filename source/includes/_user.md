@@ -43,11 +43,11 @@ Endpoint for fetching all users in a Sitegroup. This is available for all users 
 > Endpoint for fetching users with matching `flowplayer` on sites with id `SITE_ID_1` or `SITE_ID_2`
 
 ```shell
-curl 'https://app.flowplayer.com/sitegroups/<SITEGROUP_ID>/users?query={"sort":{"by":"email","order","asc"},"search":"flowplayer","filters":[{"key":"site","value":["SITE_ID_1","SITE_ID_2"]}]}'
+curl 'https://app.flowplayer.com/ovp/sitegroups/<SITEGROUP_ID>/users?query={"sort":{"by":"email","order","asc"},"search":"flowplayer","filters":[{"key":"site","value":["SITE_ID_1","SITE_ID_2"]}]}'
 ```
 
 ```javascript
- https://app.flowplayer.com/sitegroups/<SITEGROUP_ID>/users?query={"sort":{"by":"email","order","asc"},"search":"flowplayer","filters":[{"key":"site","value":["SITE_ID_1","SITE_ID_2"]}]}
+ 'https://app.flowplayer.com/ovp/sitegroups/<SITEGROUP_ID>/users?query={"sort":{"by":"email","order","asc"},"search":"flowplayer","filters":[{"key":"site","value":["SITE_ID_1","SITE_ID_2"]}]}'
 ```
 
 ```json
@@ -66,7 +66,7 @@ curl 'https://app.flowplayer.com/sitegroups/<SITEGROUP_ID>/users?query={"sort":{
                 "key": "site",
                 "value": [
                     "SITE_ID_1",
-                    "SITE_ID_2
+                    "SITE_ID_2"
                 ]
             }
         ]
