@@ -180,6 +180,43 @@ HTTP status | Description
 401         | If authorization fails for your request
 404         | If the specified User is not found
 
+
+## Delete User
+
+Endpoint for deleting a User from the platform. After deletion this user will not be visible in listings or able to login on platform, but all videos and livestreams created by this users will still be available as before deletion. Videos and livestreams must be deleted separatly.
+
+> Endpoint for deleting User with id `<user_id>` 
+
+```shell
+curl -X DELETE "https://api.flowplayer.com/user/<user_id>"
+```
+
+```json
+{
+    "success" : "ok"
+}
+```
+
+### HTTP Request
+
+`DELETE https://api.flowplayer.com/user/<user_id>`
+
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+user_id   | id for user that should be deleted
+
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified User is not found
+
+
 ## List Users 
 
 Endpoint for fetching all users in a Sitegroup. This is available for all users with Admin access on that Sitegroup. This query support filtering on sites. 
