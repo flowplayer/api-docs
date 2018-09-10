@@ -35,6 +35,78 @@ HTTP status | Description
 401         | If authorization fails for your request
 404         | If the specified Playlist is not found
 
+## Add Workspace access for User
+
+Endpoint for adding access for one User to a workspace in it's organization.
+
+> Endpoint for adding access to Workspace with id `<workspace_id>` for User with id `<user_id>` 
+
+```shell
+curl -X PUT "https://api.flowplayer.com/user/<user_id>/site/<workspace_id>"
+```
+
+```json
+{
+    "success" : "ok"
+}
+```
+
+### HTTP Request
+
+`PUT https://api.flowplayer.com/user/<user_id>/site/<workspace_id>`
+
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+user_id   | id for user that should have a new workspace added
+workspace_id | id of workspace to be added
+
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified Workspace or User is not found
+
+
+## Remove Workspace access for User
+
+Endpoint for removing access for one User to a workspace in it's organization.
+
+> Endpoint for removing access to Workspace with id `<workspace_id>` for User with id `<user_id>` 
+
+```shell
+curl -X DELETE "https://api.flowplayer.com/user/<user_id>/site/<workspace_id>"
+```
+
+```json
+{
+    "success" : "ok"
+}
+```
+
+### HTTP Request
+
+`DELETE https://api.flowplayer.com/user/<user_id>/site/<workspace_id>`
+
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+user_id   | id for user that should have a workspace removed
+workspace_id | id of workspace to be removed
+
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified Workspace or User is not found
 
 ## List Users 
 
