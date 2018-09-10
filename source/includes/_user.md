@@ -108,6 +108,78 @@ HTTP status | Description
 401         | If authorization fails for your request
 404         | If the specified Workspace or User is not found
 
+## Resend Invite for User
+
+Endpoint for resending invite to join the platform for a User.
+
+> Endpoint for resending invite for User with id `<user_id>` 
+
+```shell
+curl "https://api.flowplayer.com/user/<user_id>/resend-invite?type=email"
+```
+
+```json
+{
+    "success" : "ok"
+}
+```
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/user/<user_id>/resend-invite`
+
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+user_id   | id for user that should receive a new invite
+type | what type of invite to receive. Possible values are `google` (for users with Google Sign In) and `email`. If not specified it defaults to `email`.
+
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified User is not found
+
+
+## Revoke Invite for User
+
+Endpoint for revoking invite to join the platform for a User.
+
+> Endpoint for revoking invite for User with id `<user_id>` 
+
+```shell
+curl "https://api.flowplayer.com/user/<user_id>/revoke-invite"
+```
+
+```json
+{
+    "success" : "ok"
+}
+```
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/user/<user_id>/revoke-invite`
+
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+user_id   | id for user that should have all invites revoked
+
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified User is not found
+
 ## List Users 
 
 Endpoint for fetching all users in a Sitegroup. This is available for all users with Admin access on that Sitegroup. This query support filtering on sites. 
