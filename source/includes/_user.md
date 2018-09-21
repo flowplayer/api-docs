@@ -217,18 +217,18 @@ HTTP status | Description
 404         | If the specified User is not found
 
 
-## List Users 
+## List Users in Organization
 
-Endpoint for fetching all users in a Sitegroup. This is available for all users with Admin access on that Sitegroup. This query support filtering on sites. 
+Endpoint for fetching all users in a Organization. This is available for all users with Admin access on that Organization. This query support filtering on workspaces. 
 
-> Endpoint for fetching users with matching `flowplayer` on sites with id `SITE_ID_1` or `SITE_ID_2`
+> Endpoint for fetching users with matching `flowplayer` on workspaces with id `WORKSPACE_ID_1` or `WORKSPACE_ID_2`
 
 ```shell
-curl 'https://app.flowplayer.com/ovp/sitegroups/<SITEGROUP_ID>/users?query={"sort":{"by":"email","order","asc"},"search":"flowplayer","filters":[{"key":"site","value":["SITE_ID_1","SITE_ID_2"]}]}'
+curl 'https://app.flowplayer.com/ovp/organizations/<ORGANIZATION_ID>/users?query={"sort":{"by":"email","order","asc"},"search":"flowplayer","filters":[{"key":"workspace","value":["WORKSPACE_ID_1","WORKSPACE_ID_2"]}]}'
 ```
 
 ```javascript
- 'https://app.flowplayer.com/ovp/sitegroups/<SITEGROUP_ID>/users?query={"sort":{"by":"email","order","asc"},"search":"flowplayer","filters":[{"key":"site","value":["SITE_ID_1","SITE_ID_2"]}]}'
+ 'https://app.flowplayer.com/ovp/organizations/<ORGANIZATION_ID>/users?query={"sort":{"by":"email","order","asc"},"search":"flowplayer","filters":[{"key":"workspace","value":["WORKSPACE_ID_1","WORKSPACE_ID_2"]}]}'
 ```
 
 ```json
@@ -244,10 +244,10 @@ curl 'https://app.flowplayer.com/ovp/sitegroups/<SITEGROUP_ID>/users?query={"sor
         },
         "filters": [
             {
-                "key": "site",
+                "key": "workspace",
                 "value": [
-                    "SITE_ID_1",
-                    "SITE_ID_2"
+                    "WORKSPACE_ID_1",
+                    "WORKSPACE_ID_2"
                 ]
             }
         ]
@@ -261,7 +261,7 @@ curl 'https://app.flowplayer.com/ovp/sitegroups/<SITEGROUP_ID>/users?query={"sor
     "assets": [
         {
             "id": "USER_ID_1",
-            "active_site_id": "SITE_ID_1",
+            "active_site_id": "WORKSPACE_ID_1",
             "username": "flowplayer",
             "forum_name": "flowplayer",
             "display_name": null,
@@ -290,7 +290,7 @@ curl 'https://app.flowplayer.com/ovp/sitegroups/<SITEGROUP_ID>/users?query={"sor
             },
             "default_ui": 0,
             "sitegroup": {
-                "id": "SITEGROUP_ID",
+                "id": "ORGANIZATION_ID",
                 "name": "Flowplayer",
                 "created_at": "2015-06-17T22:28:00+0200",
                 "fp_legacy_user_id": null,
@@ -325,7 +325,7 @@ curl 'https://app.flowplayer.com/ovp/sitegroups/<SITEGROUP_ID>/users?query={"sor
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/sitegroups/<SITEGROUP_ID>/users`
+`GET https://app.flowplayer.com/organizations/<ORGANIZATION_ID>/users`
 
 
 ### Request parameters

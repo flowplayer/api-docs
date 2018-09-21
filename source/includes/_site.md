@@ -36,6 +36,85 @@ HTTP status | Description
 404         | If the specified Playlist is not found
 
 
+## List Workspaces in Organization
+
+Endpoint for fetching all workspaces in a Organization. This is available for all users with Admin access on that Organization. 
+
+> Endpoint for fetching workspaces with matching `flowplayer`
+
+```shell
+curl 'https://api.flowplayer.com/ovp/organizations/<ORGANIZATION_ID>/workspaces?query={"sort":{"by":"created_at","order","asc"},"search":"flowplayer","filters":[{"key":"workspace","value":["WORKSPACE_ID_1","WORKSPACE_ID_2"]}]}'
+```
+
+```javascript
+ 'https://api.flowplayer.com/ovp/organizations/<ORGANIZATION_ID>/workspaces?query={"sort":{"by":"created_at","order","asc"},"search":"flowplayer","filters":[{"key":"workspace","value":["WORKSPACE_ID_1","WORKSPACE_ID_2"]}]}'
+```
+
+```json
+{
+   {
+    "query": {
+        "page": 0,
+        "page_size": 20,
+        "search": "flowplayer",
+        "sort": {
+            "by": "created_at",
+            "order": "ASC"
+        },
+        "filters": []
+    },
+    "total_count": 1639,
+    "total_count_in_search": 1,
+    "page": 0,
+    "page_size": 20,
+    "total_pages": 1,
+    "search_term": "flowplayer",
+    "assets": [
+        {
+            "id": "<WORKSPACE_ID_1>",
+            "name": "flowplayer workspace",
+            "default_category_id": "<CATEGORY_ID_1>",
+            "url": "https://flowplayer.com",
+            "sitegroup_id": "<ORGANIZATION_ID>",
+            "delete_on_unpublish": false,
+            "keep_original": false,
+            "time_zone": "(GMT+01:00) Stockholm",
+            "created_at": "2015-12-07T14:05:53+0100"
+        }
+    ]
+}
+```
+
+
+
+### HTTP Request
+
+`GET https://app.flowplayer.com/organizations/<ORGANIZATION_ID>/workspaces`
+
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+page        | `optional` - Page for response, default value is `0`.
+page_size        | `optional` - Page size for response, default value is `20`.
+search | `optional` - Search term for filtering the response. Searches `name`.
+sort.by | `optional` - Sorting column for the response, default value is `created_at`. Possible values: `created_at`, `name`.
+sort.order | `optional` - Sorting order for the response, default value is `desc`. Possible values `asc` and `desc`
+filter | `optional` - No filters available are currently available.
+
+### Response
+
+Parameter | Description
+--------- | -------------------------------------
+TBD
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+
 ## List Sites 
 
 Endpoint for fetching infomation about Sites. This is only for Flowplayer Admins.
