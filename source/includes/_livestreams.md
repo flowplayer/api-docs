@@ -7,7 +7,7 @@ Endpoint for fetching infomation about one single livestream
 > Endpoint for fetching infomation about one single livestream
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/{site_id}/livestreams/{livestream_id}"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams/{livestream_id}"
 ```
 
 ```json
@@ -59,7 +59,7 @@ curl "https://app.flowplayer.com/ovp/sites/{site_id}/livestreams/{livestream_id}
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/ovp/sites/:site_id/livestreams/:livestream_id`
+`GET https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams/:livestream_id`
 
 
 ### Request parameters
@@ -107,17 +107,17 @@ video.display_video_<br>when_not_broadcasting | `Deprecated`
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-404         | If the specified Site or livestream is not found
+404         | If the specified Workspace or livestream is not found
 
 
 ## List livestreams
 
-Endpoint for fetching infomation about livestreams on a specific Site. The response is list of livestreams and for each livestream it contains a subset of the information available in the `get livestream`-request.
+Endpoint for fetching infomation about livestreams on a specific Workspace. The response is list of livestreams and for each livestream it contains a subset of the information available in the `get livestream`-request.
 
-> Endpoint for fetching infomation about livestreams on a specific Site.
+> Endpoint for fetching infomation about livestreams on a specific Workspace.
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/{site_id}/livestreams/"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams/"
 ```
 
 ```json
@@ -178,7 +178,7 @@ body:
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/ovp/sites/:site_id/livestreams/`
+`GET https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams/`
 
 
 ### Request parameters
@@ -218,7 +218,7 @@ scheduling_type | The livestreams type. Possible values `instant`, `scheduled`, 
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-404         | If the specified Site or livestream is not found
+404         | If the specified Workspace or livestream is not found
 
 
 ## Create livestream
@@ -228,7 +228,7 @@ Endpoint for creating a livestream
 > Endpoint for creating a livestream
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/{site_id}/livestreams"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams"
 ```
 
 ```json
@@ -277,7 +277,7 @@ curl "https://app.flowplayer.com/ovp/sites/{site_id}/livestreams"
 
 ### HTTP Request
 
-`PUT https://app.flowplayer.com/ovp/sites/:site_id/livestreams`
+`PUT https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams`
 
 
 ### Request parameters
@@ -288,7 +288,7 @@ name      | The livestreams name, can be displayed in the player.
 description     | `optional` The livestreams description, can be displayed in the player.
 starttime | The starttime for the livestream formatted in `yyyy-MM-dd'T'HH:mm:ssZ`. Before the starttime the livestream will not be publically visible in the player.
 stoptime | The stoptime for the livestream formatted in `yyyy-MM-dd'T'HH:mm:ssZ`. This do not have any effect for the playback in the player and the player will not stop an ongoing livestream although the stoptime has passed.
-category_id        | `optional` The livestreams category. If not provided the Sites default category will be used.
+category_id        | `optional` The livestreams category. If not provided the Workspaces default category will be used.
 user_id        | `optional` Id for the creator of the livestream
 noads        | `optional` If true no ads will be displayed during this livestream.
 published    | `optional` If true this livestream will be available for listings in the public API and also as related. Default value is `false`.
@@ -301,8 +301,8 @@ stream.viewing_url | `optional` Url that the player uses to stream this livestre
 stream.quality_type | `optional` Specifies what quality settings the livestreaming server will use while transcoding your input stream. Default is set to `Normal`.
 stream.dvr | `optional` Use DVR for this livestream. Only available if DVR is activated on your account. Default is set to `false`.
 record | Recording settings for this livestream
-record.auto_record | If this livestream should be automatically recorded. It will start recording on this livestream selected starttime. All recordings will be available as VoD. Default settings depends upon you Site settings.
-record.auto_replace_<br>with_recording | When the first recording of this livestream is done it will replace the livestream. Default settings depends upon you Site settings.
+record.auto_record | If this livestream should be automatically recorded. It will start recording on this livestream selected starttime. All recordings will be available as VoD. Default settings depends upon you Workspace settings.
+record.auto_replace_<br>with_recording | When the first recording of this livestream is done it will replace the livestream. Default settings depends upon you Workspace settings.
 video | Describes video and display settings related to this livestream. 
 video.video_id | If `null` no video is connected otherwise it's the id for the video that possibly will be displayed instead of the livestream. Default is set to `null`.
 video.display_video | When this is set as `true` and a `video_id` is set the player will render that video instead of the livestream. It will rendered the video regardless if your broadcast live on this livestream or not. Default is set to `false`.
@@ -315,7 +315,7 @@ Endpoint for updating a livestream
 > Endpoint for updating a livestream
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/:siteId/livestreams/:livestreamId"
+curl "https://app.flowplayer.com/ovp/workspaces/:siteId/livestreams/:livestreamId"
 ```
 
 ```json
@@ -361,7 +361,7 @@ curl "https://app.flowplayer.com/ovp/sites/:siteId/livestreams/:livestreamId"
 
 ### HTTP Request
 
-`PUT https://app.flowplayer.com/ovp/sites/:site_id/livestream/:livestream_id`
+`PUT https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestream/:livestream_id`
 
 
 ### Request parameters
@@ -373,7 +373,7 @@ name      | `optional` The livestreams name, can be displayed in the player.
 description     | `optional` The livestreams description, can be displayed in the player.
 starttime | `optional` The starttime for the livestream formatted in `yyyy-MM-dd'T'HH:mm:ssZ`. Before the starttime the livestream will not be publically visible in the player.
 stoptime |  `optional` The stoptime for the livestream formatted in `yyyy-MM-dd'T'HH:mm:ssZ`. This do not have any effect for the playback in the player and the player will not stop an ongoing livestream although the stoptime has passed.
-category_id        | `optional` The livestreams category. If not provided the Sites default category will be used.
+category_id        | `optional` The livestreams category. If not provided the Workspaces default category will be used.
 user_id        | `optional` Id for the creator of the livestream
 noads        | `optional` If true no ads will be displayed during this livestream.
 published    | `optional` If true this livestream will be available for listings in the public API and also as related. Default value is `false`.
@@ -385,8 +385,8 @@ stream.viewing_url | `optional` Url that the player uses to stream this livestre
 stream.quality_type | `optional` Specifies what quality settings the livestreaming server will use while transcoding your input stream. Default is set to `Normal`.
 stream.dvr | `optional` Use DVR for this livestream. Only available if DVR is activated on your account. Default is set to `false`.
 record | Recording settings for this livestream
-record.auto_record | If this livestream should be automatically recorded. It will start recording on this livestream selected starttime. All recordings will be available as VoD. Default settings depends upon you Site settings.
-record.auto_replace_<br>with_recording | When the first recording of this livestream is done it will replace the livestream. Default settings depends upon you Site settings.
+record.auto_record | If this livestream should be automatically recorded. It will start recording on this livestream selected starttime. All recordings will be available as VoD. Default settings depends upon you Workspace settings.
+record.auto_replace_<br>with_recording | When the first recording of this livestream is done it will replace the livestream. Default settings depends upon you Workspace settings.
 video | Describes video and display settings related to this livestream. To remove a video from a livestream you need to set the Id for the video to "". Just setting the `video` to `null` will not remove the video.  
 video.video_id | If `null` no video is connected otherwise it's the id for the video that possibly will be displayed instead of the livestream. Default is set to `null`.
 video.display_video | When this is set as `true` and a `video_id` is set the player will render that video instead of the livestream. It will rendered the video regardless if your broadcast live on this livestream or not. Default is set to `false`.
@@ -401,7 +401,7 @@ Endpoint for deleting one single livestream
 
 
 ```shell
-curl -X DELETE "https://app.flowplayer.com/ovp/sites/{site_id}/livestreams/{livestream_id}"
+curl -X DELETE "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams/{livestream_id}"
 ```
 
 ```json
@@ -412,14 +412,14 @@ curl -X DELETE "https://app.flowplayer.com/ovp/sites/{site_id}/livestreams/{live
 
 ### HTTP Request
 
-`DELETE https://app.flowplayer.com/ovp/sites/:site_id/livestream/:livestream_id`
+`DELETE https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestream/:livestream_id`
 
 ### Errors
 
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-404         | If the specified Site or livestream is not found
+404         | If the specified Workspace or livestream is not found
 
 ## Send Configuration Email
 
@@ -429,7 +429,7 @@ Endpoint for sending email with broadcasting configuration details for one lives
 
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/{site_id}/livestreams/{livestream_id}/send-configuration-email?email=hello@flowplayer.com"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams/{livestream_id}/send-configuration-email?email=hello@flowplayer.com"
 ```
 
 ```json
@@ -440,7 +440,7 @@ curl "https://app.flowplayer.com/ovp/sites/{site_id}/livestreams/{livestream_id}
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/ovp/sites/:site_id/livestream/:livestream_id/send-configuration-email`
+`GET https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestream/:livestream_id/send-configuration-email`
 
 ### Request parameters
 
@@ -454,5 +454,5 @@ email        |  One email address that the backend will send the configuration e
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-404         | If the specified Site or livestream is not found
+404         | If the specified Workspace or livestream is not found
 

@@ -2,13 +2,13 @@
 
 ## List Livesources
 
-List Livesources on a Site
+List Livesources on a Workspace
 
-> List Livesources on a Site
+> List Livesources on a Workspace
 
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/{site_id}/livesources"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
 ```
 
 ```json
@@ -40,7 +40,7 @@ curl "https://app.flowplayer.com/ovp/sites/{site_id}/livesources"
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/ovp/sites/:site_id/livesources`
+`GET https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources`
 
 ### Request parameters
 
@@ -68,7 +68,7 @@ assets[].ingest_url | Url to our livestreaming servers. This shall be used in yo
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-404         | If the specified Site or Livecast is not found
+404         | If the specified Workspace or Livecast is not found
 
 
 ## Get Livesource
@@ -78,7 +78,7 @@ Endpoint for fetching one Livesource
 > Endpoint for fetching one Livesource
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/:site_id/livesource/:livesource_id"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource/:livesource_id"
 ```
 
 ```json
@@ -93,7 +93,7 @@ curl "https://app.flowplayer.com/ovp/sites/:site_id/livesource/:livesource_id"
 
 ### HTTP Request
 
-`PUT https://app.flowplayer.com/ovp/sites/:site_id/livesource/:livesource_id`
+`PUT https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource/:livesource_id`
 
 
 ### Response parameters
@@ -114,7 +114,7 @@ Endpoint for creating a Livesource
 > Endpoint for creating a Livesource
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/:site_id/livesource"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource"
 ```
 
 ```json
@@ -129,7 +129,7 @@ curl "https://app.flowplayer.com/ovp/sites/:site_id/livesource"
 
 ### HTTP Request
 
-`PUT https://app.flowplayer.com/ovp/sites/:site_id/livesource`
+`PUT https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource`
 
 
 ### Request parameters
@@ -157,7 +157,7 @@ Endpoint for updating a Livesource. The only fields that can be updated for a Li
 > Endpoint for updating a Livesource
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/:site_id/livesource"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource"
 ```
 
 ```json
@@ -172,7 +172,7 @@ curl "https://app.flowplayer.com/ovp/sites/:site_id/livesource"
 
 ### HTTP Request
 
-`PUT https://app.flowplayer.com/ovp/sites/:site_id/livesource`
+`PUT https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource`
 
 
 ### Request parameters
@@ -195,13 +195,13 @@ ingest_url | Url to our livestreaming servers. This shall be used in your broadc
 
 ## Livesources Available
 
-List all livesource on a Site and their availability for during the selected timespan.
+List all livesource on a Workspace and their availability for during the selected timespan.
 
-> List all livesource on a Site and their availability for during the selected timespan.
+> List all livesource on a Workspace and their availability for during the selected timespan.
 
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/{site_id}/livesources/available?timespan=2018-01-16T11:45:44+0100,2018-02-16T11:45:44+0100"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources/available?timespan=2018-01-16T11:45:44+0100,2018-02-16T11:45:44+0100"
 ```
 
 ```json
@@ -236,7 +236,7 @@ curl "https://app.flowplayer.com/ovp/sites/{site_id}/livesources/available?times
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/ovp/sites/:site_id/livesources/available?timespan=:starttime,:stoptime`
+`GET https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources/available?timespan=:starttime,:stoptime`
 
 ### Request parameters
 
@@ -249,7 +249,7 @@ timespan        | Start- and stopdate commaseperated in `yyyy-MM-dd'T'HH:mm:ssZ`
 
 Parameter | Description
 --------- | -------------------------------------
-site_id        | Site for all Live Sources
+site_id        | Workspace for all Live Sources
 start      | Start date of timespan
 stop      | Stop date of timespan
 sources[].id | Id for Live Source
@@ -264,6 +264,6 @@ sources[].bookings[].stop | Stoptime for Livecast formatted in `yyyy-MM-dd'T'HH:
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-404         | If the specified Site or Livecast is not found
+404         | If the specified Workspace or Livecast is not found
 
 

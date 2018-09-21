@@ -1,10 +1,10 @@
-# Site
+# Workspace
 
-## Get Site (NOT IMPLEMENTED)
+## Get Workspace (NOT IMPLEMENTED)
 
-Endpoint for fetching infomation about one single Site
+Endpoint for fetching infomation about one single Workspace
 
-> Endpoint for fetching infomation about one single Site
+> Endpoint for fetching infomation about one single Workspace
 
 ```shell
 curl "TBD"
@@ -181,14 +181,14 @@ HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
 
-## Create Site
+## Create Workspace
 
 Endpoint for creating a Account. This endpoint will create Site, Site, User, Player configuration and demo videos needed when setting up an new account.
 
 > Endpoint for creating an account
 
 ```shell
-curl "https://app.flowplayer.com/ovp/account/create"
+curl "TBD"
 ```
 
 ```json
@@ -198,7 +198,7 @@ curl "https://app.flowplayer.com/ovp/account/create"
 
 ### HTTP Request
 
-`POST https://app.flowplayer.com/ovp/account/create`
+`POST TBD`
 
 
 ### Request parameters

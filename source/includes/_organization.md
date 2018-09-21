@@ -1,10 +1,10 @@
-# Sitegroup
+# Organization
 
-## Get Sitegroup (NOT IMPLEMENTED)
+## Get Organization (NOT IMPLEMENTED)
 
-Endpoint for fetching infomation about one single Sitegroup
+Endpoint for fetching infomation about one single Organization
 
-> Endpoint for fetching infomation about one single Sitegroup
+> Endpoint for fetching infomation about one single Organization
 
 ```shell
 curl "TBD"
@@ -36,11 +36,11 @@ HTTP status | Description
 404         | If the specified Playlist is not found
 
 
-## List Sitegroups 
+## List Organizations 
 
-Endpoint for fetching infomation about Sitegroups. This is only for Flowplayer Admins.
+Endpoint for fetching infomation about Organizations. This is only for Flowplayer Admins.
 
-> Endpoint for fetching infomation about sitegroups on this platform.
+> Endpoint for fetching infomation about Organizations on this platform.
 
 ```shell
 curl "https://app.flowplayer.com/accounts/list"
@@ -132,7 +132,7 @@ Parameter | Description
 Parameter | Description
 --------- | -------------------------------------
 
-## Update Sitegroup (NOT IMPLEMENTED)
+## Update Organization (NOT IMPLEMENTED)
 
 ### HTTP Request
 
@@ -150,9 +150,9 @@ Parameter | Description
 --------- | -------------------------------------
 TDB
 
-## Delete SiteGroup 
+## Delete Organization 
 
-Endpoint for deleting one single Sitegroup. This will in some cases (when enterprise) not delete the videos on the Sitegroup. 
+Endpoint for deleting one single Organization. This will in some cases (when enterprise) not delete the videos on the Organization. 
 
 ### HTTP Request
 

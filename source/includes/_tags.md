@@ -2,13 +2,13 @@
 
 ## List Tags
 
-List Tags on a Site
+List Tags on a Workspace
 
-> List Livesources on a Site
+> List Livesources on a Workspace
 
 
 ```shell
-curl "https://app.flowplayer.com/ovp/sites/:site_id/tags"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/tags"
 ```
 
 ```json
@@ -21,7 +21,7 @@ https://adserver.adtech.de/?advideo/3.0/1779.1/6553192/0/0/cc=2;vidAS=pre_roll;v
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/ovp/sites/:site_id/tags`
+`GET https://app.flowplayer.com/ovp/workspaces/:workspace_id/tags`
 
 ### Request parameters
 
