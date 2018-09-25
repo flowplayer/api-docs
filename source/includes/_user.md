@@ -1,48 +1,190 @@
 # User
 
-## Get User (NOT IMPLEMENTED)
+## Get User
 
 Endpoint for fetching infomation about one single User
 
-> Endpoint for fetching infomation about one single User
+> Endpoint for fetch one User with id `<user_id>` 
 
 ```shell
-curl "TBD"
+curl -X GET "https://api.flowplayer.com/users/account?id=<user_id>"
 ```
 
 ```json
 {
-    TBD
+    "active_site_id": "<WORKSPACE_ID_A>",
+    "created_at": "2016-01-12T07:57:48+0100",
+    "display_name": "OVP Flowplayer.com",
+    "email": "video_player @ flowplayer.com",
+    "email_notification": "NONE",
+    "first_video_uploaded": true,
+    "forum_name": "video_platform @ flowplayer.com",
+    "id": "<USER_ID_1>",
+    "last_activity": "2018-08-26T14:50:41+0200",
+    "time_zone": "(GMT+01:00) Stockholm",
+    "updated_at": "2018-09-24T17:09:12+0200",
+    "username": "video_platform @ flowplayer.com",
+    "acl": {
+        "ads": true,
+        "live": true,
+        "video": true,
+        "workspace_admin": true,
+        "organization_admin": false,
+    },
+    "sitegroup": {
+        "id": "<ORGANIZATION_ID>",
+        "name": "ORGANIZATION",
+    },
+    "sites": [
+        {
+            "id": "<WORKSPACE_ID_A>",
+            "name": "Workspace A",
+            ...
+        },
+        {
+            "id": "<WORKSPACE_ID_B>",
+            "name": "Workspace B",
+            ...
+        }
+    ]
 }
 ```
 
 ### HTTP Request
 
-`GET TBD`
+`GET https://api.flowplayer.com/users/account?id=<user_id>`
 
 
 ### Request parameters
 
-### Response
-
 Parameter | Description
 --------- | -------------------------------------
+id   | id for user that should be fetched
 
 ### Errors
 
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-404         | If the specified Playlist is not found
+404         | If the specified User is not found
 
-## Add Workspace access for User
+### Response properties
 
-Endpoint for adding access for one User to a workspace in it's organization.
+Parameter | Description
+--------- | -------------------------------------
+email   | email-address for this user. Needs to be unique in Flowplayer.
+forum_name | a in Flowplayer unique name. Sometimes refered to as `username`
+display_name | a non unique name, usually the full name of the user
+acl.ads | if the user should be able to configure ads
+acl.live | if the user should have access to livestreams
+acl.video | if the user should have access to videos
+acl.workspace_admin | if the user should have admin access to the workspaces it have access to
+acl.organization_admin | if the user should access to everything on the organizations account
+email_notification | should the user receive email notificiations on video uploads. Possible values `always` and `never`
+time_zone |
+avatar_id |
+active_site_id | the id of the workspace that the users have as active
+sites[] | Add and remove access to workspaces for a user by adding / removing workspaces in the sites-listing. This needs to include both `id` and `name` of the workspace.
 
-> Endpoint for adding access to Workspace with id `<workspace_id>` for User with id `<user_id>` 
+
+## Update User
+
+Endpoint for updating user information including `workspace`-access.  
+
+> Endpoint for update User with id `<user_id>` 
 
 ```shell
-curl -X PUT "https://api.flowplayer.com/user/<user_id>/site/<workspace_id>"
+curl -X POST "https://api.flowplayer.com/users/<user_id>"
+```
+
+```json
+
+"https://api.flowplayer.com/users/<user_id>"
+
+{
+    "active_site_id": "<WORKSPACE_ID_A>",
+    "created_at": "2016-01-12T07:57:48+0100",
+    "display_name": "OVP Flowplayer.com",
+    "email": "video_player @ flowplayer.com",
+    "email_notification": "NONE",
+    "first_video_uploaded": true,
+    "forum_name": "video_platform @ flowplayer.com",
+    "id": "<USER_ID_1>",
+    "last_activity": "2018-08-26T14:50:41+0200",
+    "time_zone": "(GMT+01:00) Stockholm",
+    "updated_at": "2018-09-24T17:09:12+0200",
+    "username": "video_platform @ flowplayer.com",
+    "acl": {
+        "ads": true,
+        "live": true,
+        "video": true,
+        "workspace_admin": true,
+        "organization_admin": false,
+    },
+    "sitegroup": {
+        "id": "<ORGANIZATION_ID>",
+        "name": "ORGANIZATION",
+    },
+    "sites": [
+        {
+            "id": "<WORKSPACE_ID_A>",
+            "name": "Workspace A",
+            ...
+        },
+        {
+            "id": "<WORKSPACE_ID_B>",
+            "name": "Workspace B",
+            ...
+        }
+    ]
+}
+```
+
+### HTTP Request
+
+`POST https://api.flowplayer.com/users/<user_id>`
+
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+user_id   | id for user that should be updated
+
+### Request body properties
+
+Parameter | Description
+--------- | -------------------------------------
+email   | email-address for this user. Needs to be unique in Flowplayer.
+forum_name | a in Flowplayer unique name. Sometimes refered to as `username`
+display_name | a non unique name, usually the full name of the user
+acl.ads | if the user should be able to configure ads
+acl.live | if the user should have access to livestreams
+acl.video | if the user should have access to videos
+acl.workspace_admin | if the user should have admin access to the workspaces it have access to
+acl.organization_admin | if the user should access to everything on the organizations account
+email_notification | should the user receive email notificiations on video uploads. Possible values `always` and `never`
+time_zone |
+avatar_id |
+active_site_id | the id of the workspace that the users have as active
+sites[] | Add and remove access to workspaces for a user by adding / removing workspaces in the sites-listing. This needs to include both `id` and `name` of the workspace.
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+422         | If the request is unproccessable due to bad formatted request body or illegal values ( for example an already used email-address )
+404         | If the specified User is not found
+
+## Delete User
+
+Endpoint for deleting a User from the platform. After deletion this user will not be visible in listings or able to login on platform, but all videos and livestreams created by this users will still be available as before deletion. Videos and livestreams must be deleted separatly.
+
+> Endpoint for deleting User with id `<user_id>` 
+
+```shell
+curl -X DELETE "https://api.flowplayer.com/users/<user_id>"
 ```
 
 ```json
@@ -53,7 +195,42 @@ curl -X PUT "https://api.flowplayer.com/user/<user_id>/site/<workspace_id>"
 
 ### HTTP Request
 
-`PUT https://api.flowplayer.com/user/<user_id>/site/<workspace_id>`
+`DELETE https://api.flowplayer.com/users/<user_id>`
+
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+user_id   | id for user that should be deleted
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified User is not found
+
+
+## Add Workspace access for User
+
+Endpoint for adding access for one User to a workspace in it's organization.
+
+> Endpoint for adding access to Workspace with id `<workspace_id>` for User with id `<user_id>` 
+
+```shell
+curl -X PUT "https://api.flowplayer.com/users/<user_id>/site/<workspace_id>"
+```
+
+```json
+{
+    "success" : "ok"
+}
+```
+
+### HTTP Request
+
+`PUT https://api.flowplayer.com/users/<user_id>/site/<workspace_id>`
 
 
 ### Request parameters
@@ -79,7 +256,7 @@ Endpoint for removing access for one User to a workspace in it's organization.
 > Endpoint for removing access to Workspace with id `<workspace_id>` for User with id `<user_id>` 
 
 ```shell
-curl -X DELETE "https://api.flowplayer.com/user/<user_id>/site/<workspace_id>"
+curl -X DELETE "https://api.flowplayer.com/users/<user_id>/site/<workspace_id>"
 ```
 
 ```json
@@ -90,7 +267,7 @@ curl -X DELETE "https://api.flowplayer.com/user/<user_id>/site/<workspace_id>"
 
 ### HTTP Request
 
-`DELETE https://api.flowplayer.com/user/<user_id>/site/<workspace_id>`
+`DELETE https://api.flowplayer.com/users/<user_id>/site/<workspace_id>`
 
 
 ### Request parameters
@@ -115,7 +292,7 @@ Endpoint for resending invite to join the platform for a User.
 > Endpoint for resending invite for User with id `<user_id>` 
 
 ```shell
-curl "https://api.flowplayer.com/user/<user_id>/resend-invite?type=email"
+curl "https://api.flowplayer.com/users/<user_id>/resend-invite?type=email"
 ```
 
 ```json
@@ -126,7 +303,7 @@ curl "https://api.flowplayer.com/user/<user_id>/resend-invite?type=email"
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/user/<user_id>/resend-invite`
+`GET https://api.flowplayer.com/users/<user_id>/resend-invite`
 
 
 ### Request parameters
@@ -152,7 +329,7 @@ Endpoint for revoking invite to join the platform for a User.
 > Endpoint for revoking invite for User with id `<user_id>` 
 
 ```shell
-curl "https://api.flowplayer.com/user/<user_id>/revoke-invite"
+curl "https://api.flowplayer.com/users/<user_id>/revoke-invite"
 ```
 
 ```json
@@ -163,7 +340,7 @@ curl "https://api.flowplayer.com/user/<user_id>/revoke-invite"
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/user/<user_id>/revoke-invite`
+`GET https://api.flowplayer.com/users/<user_id>/revoke-invite`
 
 
 ### Request parameters
@@ -179,43 +356,6 @@ HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
 404         | If the specified User is not found
-
-
-## Delete User
-
-Endpoint for deleting a User from the platform. After deletion this user will not be visible in listings or able to login on platform, but all videos and livestreams created by this users will still be available as before deletion. Videos and livestreams must be deleted separatly.
-
-> Endpoint for deleting User with id `<user_id>` 
-
-```shell
-curl -X DELETE "https://api.flowplayer.com/user/<user_id>"
-```
-
-```json
-{
-    "success" : "ok"
-}
-```
-
-### HTTP Request
-
-`DELETE https://api.flowplayer.com/user/<user_id>`
-
-
-### Request parameters
-
-Parameter | Description
---------- | -------------------------------------
-user_id   | id for user that should be deleted
-
-
-### Errors
-
-HTTP status | Description
------------ | --------------------------------------------
-401         | If authorization fails for your request
-404         | If the specified User is not found
-
 
 ## List Users in Organization
 
@@ -381,35 +521,3 @@ Parameter | Description
 Parameter | Description
 --------- | -------------------------------------
 
-## Update User (NOT IMPLEMENTED)
-
-### HTTP Request
-
-
-
-### Request parameters
-
-Parameter | Description
---------- | -------------------------------------
-TBD
-
-### Response
-
-Parameter | Description
---------- | -------------------------------------
-TDB
-
-## Delete User 
-
-Endpoint for deleting one single User. This will in some cases (when enterprise) not delete the videos on the User. 
-
-### HTTP Request
-
-`DELETE https://app.flowplayer.com/ovp/accounts/delete/{User_id}`
-
-### Errors
-
-HTTP status | Description
------------ | --------------------------------------------
-401         | If authorization fails for your request
-404         | If the specified User is not found

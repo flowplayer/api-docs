@@ -15,9 +15,9 @@ includes:
   - livestreams
   - livesources
   - playlists
-  - sitegroup
-  - site
   - user
+  - workspace
+  - organization
 
 search: true
 ---
