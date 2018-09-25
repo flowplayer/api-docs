@@ -2,7 +2,7 @@
 
 ## Get User
 
-Endpoint for fetching infomation about one single User
+Endpoint for fetching infomation about one single User. More information about user access roles can be found in our [help-section](https://flowplayer.com/help/users/account/managing-users#user-roles-funcationlity-and...).
 
 > Endpoint for fetch one User with id `<user_id>` 
 
@@ -89,7 +89,7 @@ sites[] | Add and remove access to workspaces for a user by adding / removing wo
 
 ## Update User
 
-Endpoint for updating user information including `workspace`-access.  
+Endpoint for updating user information including `workspace`-access. More information about user access roles can be found in our [help-section](https://flowplayer.com/help/users/account/managing-users#user-roles-funcationlity-and...).
 
 > Endpoint for update User with id `<user_id>` 
 
