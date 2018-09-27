@@ -7,7 +7,7 @@ Endpoint for fetching infomation about one single User. More information about u
 > Endpoint for fetch one User with id `<user_id>` 
 
 ```shell
-curl -X GET "https://api.flowplayer.com/users/account?id=<user_id>"
+curl -X GET "https://api.flowplayer.com/ovp/users/account?id=<user_id>"
 ```
 
 ```json
@@ -52,7 +52,7 @@ curl -X GET "https://api.flowplayer.com/users/account?id=<user_id>"
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/users/account?id=<user_id>`
+`GET https://api.flowplayer.com/ovp/users/account?id=<user_id>`
 
 
 ### Request parameters
@@ -94,12 +94,12 @@ Endpoint for updating user information including `workspace`-access. More inform
 > Endpoint for update User with id `<user_id>` 
 
 ```shell
-curl -X POST "https://api.flowplayer.com/users/<user_id>"
+curl -X POST "https://api.flowplayer.com/ovp/users/<user_id>"
 ```
 
 ```json
 
-"https://api.flowplayer.com/users/<user_id>"
+"https://api.flowplayer.com/ovp/users/<user_id>"
 
 {
     "active_site_id": "<WORKSPACE_ID_A>",
@@ -142,7 +142,7 @@ curl -X POST "https://api.flowplayer.com/users/<user_id>"
 
 ### HTTP Request
 
-`POST https://api.flowplayer.com/users/<user_id>`
+`POST https://api.flowplayer.com/ovp/users/<user_id>`
 
 
 ### Request parameters
@@ -184,7 +184,7 @@ Endpoint for deleting a User from the platform. After deletion this user will no
 > Endpoint for deleting User with id `<user_id>` 
 
 ```shell
-curl -X DELETE "https://api.flowplayer.com/users/<user_id>"
+curl -X DELETE "https://api.flowplayer.com/ovp/users/<user_id>"
 ```
 
 ```json
@@ -195,7 +195,7 @@ curl -X DELETE "https://api.flowplayer.com/users/<user_id>"
 
 ### HTTP Request
 
-`DELETE https://api.flowplayer.com/users/<user_id>`
+`DELETE https://api.flowplayer.com/ovp/users/<user_id>`
 
 
 ### Request parameters
@@ -219,7 +219,7 @@ Endpoint for adding access for one User to a workspace in it's organization.
 > Endpoint for adding access to Workspace with id `<workspace_id>` for User with id `<user_id>` 
 
 ```shell
-curl -X PUT "https://api.flowplayer.com/users/<user_id>/site/<workspace_id>"
+curl -X PUT "https://api.flowplayer.com/ovp/users/<user_id>/site/<workspace_id>"
 ```
 
 ```json
@@ -230,7 +230,7 @@ curl -X PUT "https://api.flowplayer.com/users/<user_id>/site/<workspace_id>"
 
 ### HTTP Request
 
-`PUT https://api.flowplayer.com/users/<user_id>/site/<workspace_id>`
+`PUT https://api.flowplayer.com/ovp/users/<user_id>/site/<workspace_id>`
 
 
 ### Request parameters
@@ -256,7 +256,7 @@ Endpoint for removing access for one User to a workspace in it's organization.
 > Endpoint for removing access to Workspace with id `<workspace_id>` for User with id `<user_id>` 
 
 ```shell
-curl -X DELETE "https://api.flowplayer.com/users/<user_id>/site/<workspace_id>"
+curl -X DELETE "https://api.flowplayer.com/ovp/users/<user_id>/site/<workspace_id>"
 ```
 
 ```json
@@ -267,7 +267,7 @@ curl -X DELETE "https://api.flowplayer.com/users/<user_id>/site/<workspace_id>"
 
 ### HTTP Request
 
-`DELETE https://api.flowplayer.com/users/<user_id>/site/<workspace_id>`
+`DELETE https://api.flowplayer.com/ovp/users/<user_id>/site/<workspace_id>`
 
 
 ### Request parameters
@@ -292,7 +292,7 @@ Endpoint for resending invite to join the platform for a User.
 > Endpoint for resending invite for User with id `<user_id>` 
 
 ```shell
-curl "https://api.flowplayer.com/users/<user_id>/resend-invite?type=email"
+curl "https://api.flowplayer.com/ovp/users/<user_id>/resend-invite?type=email"
 ```
 
 ```json
@@ -303,7 +303,7 @@ curl "https://api.flowplayer.com/users/<user_id>/resend-invite?type=email"
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/users/<user_id>/resend-invite`
+`GET https://api.flowplayer.com/ovp/users/<user_id>/resend-invite`
 
 
 ### Request parameters
@@ -329,7 +329,7 @@ Endpoint for revoking invite to join the platform for a User.
 > Endpoint for revoking invite for User with id `<user_id>` 
 
 ```shell
-curl "https://api.flowplayer.com/users/<user_id>/revoke-invite"
+curl "https://api.flowplayer.com/ovp/users/<user_id>/revoke-invite"
 ```
 
 ```json
@@ -340,7 +340,7 @@ curl "https://api.flowplayer.com/users/<user_id>/revoke-invite"
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/users/<user_id>/revoke-invite`
+`GET https://api.flowplayer.com/ovp/users/<user_id>/revoke-invite`
 
 
 ### Request parameters
@@ -465,7 +465,7 @@ curl 'https://app.flowplayer.com/ovp/organizations/<ORGANIZATION_ID>/users?query
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/organizations/<ORGANIZATION_ID>/users`
+`GET https://app.flowplayer.com/ovp/organizations/<ORGANIZATION_ID>/users`
 
 
 ### Request parameters
@@ -490,34 +490,3 @@ TBD
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-
-## Create User
-
-Endpoint for creating a Account. This endpoint will create User, User, User, Player configuration and demo videos needed when setting up an new account.
-
-> Endpoint for creating an account
-
-```shell
-curl "https://app.flowplayer.com/ovp/account/create"
-```
-
-```json
-{
-}
-```
-
-### HTTP Request
-
-`POST https://app.flowplayer.com/ovp/account/create`
-
-
-### Request parameters
-
-Parameter | Description
---------- | -------------------------------------
-
-### Response
-
-Parameter | Description
---------- | -------------------------------------
-
