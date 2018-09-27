@@ -24,6 +24,7 @@ curl -X GET "https://api.flowplayer.com/ovp/users/account?id=<user_id>"
     "time_zone": "(GMT+01:00) Stockholm",
     "updated_at": "2018-09-24T17:09:12+0200",
     "username": "video_platform @ flowplayer.com",
+    "state": "active",
     "acl": {
         "ads": true,
         "live": true,
@@ -84,6 +85,7 @@ email_notification | should the user receive email notificiations on video uploa
 time_zone |
 avatar_id |
 active_site_id | the id of the workspace that the users have as active
+state | current state of the user. Possible values `invited`, `active` and `revoked_invite`.
 sites[] | Add and remove access to workspaces for a user by adding / removing workspaces in the sites-listing. This needs to include both `id` and `name` of the workspace.
 
 
@@ -114,6 +116,7 @@ curl -X POST "https://api.flowplayer.com/ovp/users/<user_id>"
     "time_zone": "(GMT+01:00) Stockholm",
     "updated_at": "2018-09-24T17:09:12+0200",
     "username": "video_platform @ flowplayer.com",
+    "state": "active",
     "acl": {
         "ads": true,
         "live": true,
@@ -166,6 +169,7 @@ acl.organization_admin | if the user should access to everything on the organiza
 email_notification | should the user receive email notificiations on video uploads. Possible values `always` and `never`
 time_zone |
 avatar_id |
+state | current state of the user. Possible values `invited`, `active` and `revoked_invite`.
 active_site_id | the id of the workspace that the users have as active
 sites[] | Add and remove access to workspaces for a user by adding / removing workspaces in the sites-listing. This needs to include both `id` and `name` of the workspace.
 
@@ -324,7 +328,7 @@ HTTP status | Description
 
 ## Revoke Invite for User
 
-Endpoint for revoking invite to join the platform for a User.
+Endpoint for revoking invite to join the platform for a User. This sets the `state` of the user to `revoked_invite` if the user previously was in `invited` `state`.
 
 > Endpoint for revoking invite for User with id `<user_id>` 
 
@@ -420,6 +424,7 @@ curl 'https://app.flowplayer.com/ovp/organizations/<ORGANIZATION_ID>/users?query
             "live_access": true,
             "user_only_access": false,
             "sitegroup_access": true,
+            "state": "active",
             "acl": {
                 "ads": true,
                 "live": true,
@@ -477,7 +482,7 @@ page_size        | `optional` - Page size for response, default value is `20`.
 search | `optional` - Search term for filtering the response. Searches `name`.
 sort.by | `optional` - Sorting column for the response, default value is `created_at`. Possible values: `created_at`, `email`, `last_logged_in`.
 sort.order | `optional` - Sorting order for the response, default value is `desc`. Possible values `asc` and `desc`
-filter | `optional` - Filters available are currently only `site`. The value that should be used is `site_id`
+filter | `optional` - Filters available are currently only `site` and `state`. The value that should be used for `sites` is `site_id` and `state` accept `invited`, `active` and `revoked_invite`.
 
 ### Response
 
