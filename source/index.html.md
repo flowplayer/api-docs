@@ -13,6 +13,7 @@ includes:
   - errors
   - analytics
   - livestreams
+  - liveclips
   - livesources
   - playlists
   - user
