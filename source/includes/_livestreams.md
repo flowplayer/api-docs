@@ -117,28 +117,9 @@ Endpoint for fetching infomation about livestreams on a specific Workspace. The 
 > Endpoint for fetching infomation about livestreams on a specific Workspace.
 
 ```shell
-curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams/"
+curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livestreams?query={"filters:[ {"key":"category" , "value" : ["category_id_1", "category_id_2"]},{"key":"remote", "value" : true}, {"key":"scheduling_type", "value" : ["instant","linear"]},{"key":"time_range","value":"active"}],"search" :"flowplayer","sort" : { "by":"name","order":"asc"},"page":0, "page_size":20}"
 ```
 
-```json
-body:
-{
-    "filters:[
-        {"key":"category" , "value" : ["category_id_1", "category_id_2"]},
-        {"key":"remote", "value" : true},
-        {"key":"scheduling_type", "value" : ["instant","linear"]},
-        {"key":"broadcast_status", "value" : ["started"]},
-        {"key":"time_range","value":"active"}
-    ],
-    "search" :"flowplayer",
-    "sort" : {
-        "by":"name",
-        "order":"asc"
-    },
-    "page":0,
-    "page_size":20
-}
-```
 ```json
 {
     "total_count": 21,

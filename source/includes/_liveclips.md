@@ -7,7 +7,8 @@ Endpoint for fetching infomation about all liveclips associated to a single live
 > Endpoint for fetching infomation about all liveclips associated to a single livestream
 
 ```shell
-curl "https://app.flowplayer.com/ovp/workspaces/{siteId}/livestreams/{livestreamId}/clips"
+curl "https://app.flowplayer.com/ovp/workspaces/{siteId}/livestreams/{livestreamId}/clips?query={"sort":{ "by":"name","order":"asc"},"page":0, "page_size":20}"
+
 ```
 
 ```json
@@ -71,7 +72,7 @@ Parameter | Description
 --------- | -------------------------------------
 page        | `optional` - Page for response, default value is `0`.
 page_size        | `optional` - Page size for response, default value is `20`.
-sort_by | `optional` - Sorting column for the response, default value is `startTime`. Possible values: `startTime,stopTime`.
+sort_by | `optional` - Sorting column for the response, default value is `start_time`. Possible values: `start_time,stop_time`.
 sort_order | `optional` - Sorting order for the response, default value is `desc`. Possible values `asc` and `desc`
 
 
