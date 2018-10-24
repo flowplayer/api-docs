@@ -1,6 +1,6 @@
-# LiveClips
+# Live clips
 
-## Get LiveClips
+## Get Live clips
 
 Endpoint for fetching infomation about all liveclips associated to a single livestream
 
@@ -105,7 +105,7 @@ HTTP status | Description
 
 
 
-## Create Vod from a live clip
+## Create Video from a Live clip
 
 Endpoint for creating a video from a live clip.
 

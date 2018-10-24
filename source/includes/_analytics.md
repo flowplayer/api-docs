@@ -692,7 +692,7 @@ domains | List containing plays per domain sorted with the domain with highest n
 players | List containing plays per player sorted with the player with highest number of plays first.
 
 
-## List workspaces on Organization
+## List Workspaces on Organization
 
 This endpoint returns workspaces having the most plays or displays on a Organization during a specified period of time.
 
@@ -707,61 +707,61 @@ curl "https://api.flowplayer.com/analytics/organizations/<organization_id>/works
 ```json
  [
         {
-            "name": "Site 1",
+            "name": "Workspace 1",
             "id": "360b8f49-3c98-4020-ac72-83f958405239",
             "plays": 252863,
             "displays":1234020
         },
         {
-            "name": "Site 2",
+            "name": "Workspace 2",
             "id": "3de6843f-2a65-46bd-a899-753d813f22c7",
             "plays": 227743,
             "displays":2131212
         },
         {
-            "name": "Site 3",
+            "name": "Workspace 3",
             "id": "9242781d-149e-468c-bc80-b383bc6fd73d",
             "plays": 210430,
             "displays":523223
         },
         {
-            "name": "Site 4",
+            "name": "Workspace 4",
             "id": "8ed589c1-9b88-4040-81f7-c063fcf139a2",
             "plays": 198156,
             "displays":234888
         },
         {
-            "name": "Site 5",
+            "name": "Workspace 5",
             "id": "666f6532-8b6e-4ccf-84a0-0916ab827a24",
             "plays": 192380,
             "displays":766543
         },
         {
-            "name": "Site 6",
+            "name": "Workspace 6",
             "id": "075d123a-8e58-4b05-b505-5f5ca8244a5d",
             "plays": 191079,
             "displays":237587
         },
         {
-            "name": "Site 7",
+            "name": "Workspace 7",
             "id": "0548e44c-253a-4bb0-bf89-4f3d83b95dde",
             "plays": 189647,
             "displays":867655
         },
         {
-            "name": "Site 8",
+            "name": "Workspace 8",
             "id": "6ebeec02-1f6c-45ef-a50e-eeaae4370da5",
             "plays": 184121,
             "displays":190001
         },
         {
-            "name": "Site 9",
+            "name": "Workspace 9",
             "id": "89a371e5-da85-4160-a913-b82b9a0e6b4c",
             "plays": 181421,
             "displays":238800
         },
         {
-            "name": "Site 10",
+            "name": "Workspace 10",
             "id": "bba4d3d9-ea9c-452f-83c3-e577c26a1784",
             "plays": 180103,
             "displays":188283
@@ -780,19 +780,19 @@ curl "https://api.flowplayer.com/analytics/organizations/54af42d8-b41d-4efc-b355
 ```json
  [ 
     {
-        "name": "workspaces 1",
+        "name": "Workspace 1",
         "id": "360b8f49-3c98-4020-ac72-83f958405239",
         "plays": 252863,       
         "displays":2131212
     },
     {
-        "name": "workspaces 2",
+        "name": "Workspace 2",
         "id": "3de6843f-2a65-46bd-a899-753d813f22c7",
         "plays": 227743,
         "displays":1234020
     },
     {
-        "name": "workspaces 3",
+        "name": "Workspace 3",
         "id": "9242781d-149e-468c-bc80-b383bc6fd73d",
         "plays": 210430,
         "displays":523223
@@ -813,4 +813,131 @@ start     | optional, start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 end       | optional, end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 size      | optional, maximum number of workspaces to be returned, 10 is returned if size is not specified. The request is limited to return 200 workspaces.
 sort      | optional, sorting used when listing the workspaces. Possible values `displays` and `plays`. The default value is `plays`.
+
+
+
+## List Videos for Player Configuration
+
+This endpoint returns videos having the most plays using a Player Configuration during a specified period of time.
+
+> Get the most played videos on a Player Configuration
+
+``shell
+curl "https://api.flowplayer.com/analytics/players/<configuration_id>/videos" 
+``
+
+> 
+
+```json
+ [
+        {
+            "name": "Video 1",
+            "id": "360b8f49-3c98-4020-ac72-83f958405239",
+            "plays": 252863
+        },
+        {
+            "name": "Video 2",
+            "id": "3de6843f-2a65-46bd-a899-753d813f22c7",
+            "plays": 227743
+        },
+        {
+            "name": "Video 3",
+            "id": "9242781d-149e-468c-bc80-b383bc6fd73d",
+            "plays": 210430
+        },
+        {
+            "name": "Video 4",
+            "id": "8ed589c1-9b88-4040-81f7-c063fcf139a2",
+            "plays": 198156
+        },
+        {
+            "name": "Video 5",
+            "id": "666f6532-8b6e-4ccf-84a0-0916ab827a24",
+            "plays": 192380
+        },
+        {
+            "name": "Video 6",
+            "id": "075d123a-8e58-4b05-b505-5f5ca8244a5d",
+            "plays": 191079
+        },
+        ...
+]
+```
+
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/analytics/players/<configuration_id>/videos`
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+id    | The Player Configuration's Id is mandatory in the path,.
+start     | optional, start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+end       | optional, end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+size      | optional, maximum number of videos to be returned, 10 is returned if size is not specified. The request is limited to return 200 videos.
+
+
+## List Livestreams for Player Configuration
+
+This endpoint returns livestreams having the most plays using a Player Configuration during a specified period of time.
+
+> Get the most played livestreams on a Player Configuration
+
+``shell
+curl "https://api.flowplayer.com/analytics/players/<configuration_id>/livestreams" 
+``
+
+> 
+
+```json
+ [
+        {
+            "name": "Livestream 1",
+            "id": "360b8f49-3c98-4020-ac72-83f958405239",
+            "plays": 252863
+        },
+        {
+            "name": "Livestream 2",
+            "id": "3de6843f-2a65-46bd-a899-753d813f22c7",
+            "plays": 227743
+        },
+        {
+            "name": "Livestream 3",
+            "id": "9242781d-149e-468c-bc80-b383bc6fd73d",
+            "plays": 210430
+        },
+        {
+            "name": "Livestream 4",
+            "id": "8ed589c1-9b88-4040-81f7-c063fcf139a2",
+            "plays": 198156
+        },
+        {
+            "name": "Livestream 5",
+            "id": "666f6532-8b6e-4ccf-84a0-0916ab827a24",
+            "plays": 192380
+        },
+        {
+            "name": "Livestream 6",
+            "id": "075d123a-8e58-4b05-b505-5f5ca8244a5d",
+            "plays": 191079
+        },
+        ...
+]
+```
+
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/analytics/players/<configuration_id>/livestreams`
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+id    | The Player Configuration's Id is mandatory in the path,.
+start     | optional, start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+end       | optional, end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
+size      | optional, maximum number of livestreams to be returned, 10 is returned if size is not specified. The request is limited to return 200 livestreams.
 
