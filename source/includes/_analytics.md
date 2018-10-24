@@ -196,14 +196,14 @@ Parameter | Description
 --------- | -------------------------------------
 
 
-## List Videos on Site
+## List Videos on Workspace
 
-This endpoint returns videos having the most plays or displays on a Site during a specified period of time.
+This endpoint returns videos having the most plays or displays on a Workspace during a specified period of time.
 
-> Get the most played videos on a Site
+> Get the most played videos on a Workspace
 
 ```shell
-curl "https://api.flowplayer.com/analytics/sites/videos/:siteId" 
+curl "https://api.flowplayer.com/analytics/workspaces/<workspace_id>/videos" 
 ```
 
 > 
@@ -273,13 +273,13 @@ curl "https://api.flowplayer.com/analytics/sites/videos/:siteId"
 ]
 ```
 
-> Get the most displays videos in a specific Site and in a specified time range, limiting the results to the top 3 videos.
+> Get the most displays videos in a specific Workspace and in a specified time range, limiting the results to the top 3 videos.
 
 ```shell
-curl "https://api.flowplayer.com/analytics/sites/videos/54af42d8-b41d-4efc-b355-38d879820184?size=3&start=2018-05-01&end=2018-05-31&sort=display"   
+curl "https://api.flowplayer.com/analytics/workspaces/54af42d8-b41d-4efc-b355-38d879820184/videos?size=3&start=2018-05-01&end=2018-05-31&sort=display"   
 ```
 
-> Returns the three videos with most displays in Site `54af42d8-b41d-4efc-b355-38d879820184` during May 2018
+> Returns the three videos with most displays in Workspace `54af42d8-b41d-4efc-b355-38d879820184` during May 2018
 
 ```json
  [ 
@@ -306,29 +306,29 @@ curl "https://api.flowplayer.com/analytics/sites/videos/54af42d8-b41d-4efc-b355-
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/sites/videos/:siteId`
+`GET https://api.flowplayer.com/analytics/workspaces/<workspace_id>/videos`
 
 ### Request parameters
 
 Parameter | Description
 --------- | -------------------------------------
-siteId    | The Site's Id is mandatory in the path.
+id    | The Workspace's Id is mandatory in the path.
 start     | optional, start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 end       | optional, end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 size      | optional, maximum number of videos to be returned, 10 is returned if size is not specified. The request is limited to return 100 videos.
 sort      | optional, sorting used when listing the videos. Possible values `displays` and `plays`. The default value is `plays`.
 
 
-## Get Site summarized analytics
+## Get Workspace summarized analytics
 
-This endpoint is used to query summarized analytics for a specific Site. 
+This endpoint is used to query summarized analytics for a specific workspace. 
 
-The Site completion series is divided into 100 `segments` and every `segment` represents 1% for average videos duration. The return value of this endpoint includes view counts for each of these 100 segments.
+The Workspace completion series is divided into 100 `segments` and every `segment` represents 1% for average videos duration. The return value of this endpoint includes view counts for each of these 100 segments.
 
-> Get analytics for Site with Id 360b8f49-3c98-4020-ac72-83f958405239
+> Get analytics for Workspace with Id 360b8f49-3c98-4020-ac72-83f958405239
 
 ```shell
-curl "https://api.flowplayer.com/analytics/sites/360b8f49-3c98-4020-ac72-83f958405239?start=2018-01-01&end=2018-12-04"
+curl "https://api.flowplayer.com/analytics/workspaces/360b8f49-3c98-4020-ac72-83f958405239?start=2018-01-01&end=2018-12-04"
 ```
 
 
@@ -374,7 +374,7 @@ curl "https://api.flowplayer.com/analytics/sites/360b8f49-3c98-4020-ac72-83f9584
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/sites/:id`
+`GET https://api.flowplayer.com/analytics/workspaces/<workspace_id>`
 
 ### Request parameters
 
@@ -387,8 +387,8 @@ end       | optional, ending date/time of the interval, format `YYYY-MM-DDTHH` o
 
 Parameter | Description
 --------- | -------------------------------------
-displays        | number of displays for this site. A `display` is registered when the player is completely loaded and ready to play the site. 
-plays.total    | total number of plays for this site. A `play` is registered when the site starts to play. If the site have prerolls this is registered after all prerolls are complete.
+displays        | number of displays for this workspace. A `display` is registered when the player is completely loaded and ready to play the workspace. 
+plays.total    | total number of plays for this workspace. A `play` is registered when the Workspace starts to play. If the Workspace have prerolls this is registered after all prerolls are complete.
 plays.unique        | number of unique plays.
 plays.device.desktop | number of plays on desktop
 plays.device.mobile | number of plays on mobile
@@ -396,9 +396,9 @@ plays.device.tablet | number of plays on tablet
 plays.mobile_os.android | number of plays on android
 plays.mobile_os.ios | number of plays on ios
 plays.mobile_os.windows_phone | number of plays on windows_phone
-segments | number of viewers for each of the 100 segments of the videos for this Site.
+segments | number of viewers for each of the 100 segments of the videos for this workspace.
 completion_rate | Number of viewers that viewed until the end presented with a decimal value. E.g. 0.42 means that 42% of the viewers viewed until the end.
-average_completion | How long the viewers viewed in average presented in decimal value. E.g. 0.5 means that the average user viewed 50% of the site.
+average_completion | How long the viewers viewed in average presented in decimal value. E.g. 0.5 means that the average user viewed 50% of the workspace.
 countries | List containing plays per country sorted with the country with highest number of plays first.
 domains | List containing plays per domain sorted with the domain with highest number of plays first.
 players | List containing plays per player sorted with the player with highest number of plays first.
@@ -487,14 +487,14 @@ domains | List containing plays per domain sorted with the domain with highest n
 players | List containing plays per player sorted with the player with highest number of plays first.
 
 
-## List Categories on Site
+## List Categories on Workspace
 
-This endpoint returns categories having the most plays or displays on a Site during a specified period of time.
+This endpoint returns categories having the most plays or displays on a Workspace during a specified period of time.
 
-> Get the most played categories on a Site
+> Get the most played categories on a Workspace
 
 ``shell
-curl "https://api.flowplayer.com/analytics/sites/categories/:siteId" 
+curl "https://api.flowplayer.com/analytics/workspaces/<workspace_id>/categories" 
 ``
 
 > 
@@ -564,13 +564,13 @@ curl "https://api.flowplayer.com/analytics/sites/categories/:siteId"
 ]
 ```
 
-> Get the most displays categories in a specific Site and in a specified time range, limiting the results to the top 3 categories.
+> Get the most displays categories in a specific Workspace and in a specified time range, limiting the results to the top 3 categories.
 
 ```shell
-curl "https://api.flowplayer.com/analytics/sites/categories/54af42d8-b41d-4efc-b355-38d879820184?size=3&start=2018-05-01&end=2018-05-31&sort=display"   
+curl "https://api.flowplayer.com/analytics/workspaces/categories/54af42d8-b41d-4efc-b355-38d879820184?size=3&start=2018-05-01&end=2018-05-31&sort=display"   
 ```
 
-> Returns the three categories with most displays in Site `54af42d8-b41d-4efc-b355-38d879820184` during May 2018
+> Returns the three categories with most displays in Workspace `54af42d8-b41d-4efc-b355-38d879820184` during May 2018
 
 ```json
  [ 
@@ -597,28 +597,28 @@ curl "https://api.flowplayer.com/analytics/sites/categories/54af42d8-b41d-4efc-b
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/sites/:siteId/categories`
+`GET https://api.flowplayer.com/analytics/workspaces/<workspace_id>/categories`
 
 ### Request parameters
 
 Parameter | Description
 --------- | -------------------------------------
-siteId    | The Site's Id is mandatory in the path.
+id    | The Workspace's Id is mandatory in the path.
 start     | optional, start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 end       | optional, end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 size      | optional, maximum number of categories to be returned, 10 is returned if size is not specified. The request is limited to return 100 categories.
 sort      | optional, sorting used when listing the categories. Possible values `displays` and `plays`. The default value is `plays`.
 
-## Get Account summarized analytics
+## Get Organization summarized analytics
 
-This endpoint is used to query summarized analytics for a specific Account. 
+This endpoint is used to query summarized analytics for a specific Organization. 
 
-The Account completion series is divided into 100 `segments` and every `segment` represents 1% for average videos duration. The return value of this endpoint includes view counts for each of these 100 segments.
+The Organization completion series is divided into 100 `segments` and every `segment` represents 1% for average videos duration. The return value of this endpoint includes view counts for each of these 100 segments.
 
-> Get analytics for Account with Id 360b8f49-3c98-4020-ac72-83f958405239
+> Get analytics for Organization with Id 360b8f49-3c98-4020-ac72-83f958405239
 
 ```shell
-curl "https://api.flowplayer.com/analytics/accounts/360b8f49-3c98-4020-ac72-83f958405239?start=2018-01-01&end=2018-12-04"
+curl "https://api.flowplayer.com/analytics/organizations/360b8f49-3c98-4020-ac72-83f958405239?start=2018-01-01&end=2018-12-04"
 ```
 
 
@@ -662,7 +662,7 @@ curl "https://api.flowplayer.com/analytics/accounts/360b8f49-3c98-4020-ac72-83f9
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/accounts/:id`
+`GET https://api.flowplayer.com/analytics/organizations/:id`
 
 ### Request parameters
 
@@ -675,8 +675,8 @@ end       | optional, ending date/time of the interval, format `YYYY-MM-DDTHH` o
 
 Parameter | Description
 --------- | -------------------------------------
-displays        | number of displays for this Account. A `display` is registered when the player is completely loaded and ready to play the Account. 
-plays.total    | total number of plays for this Account. A `play` is registered when the Account starts to play. If the Account have prerolls this is registered after all prerolls are complete.
+displays        | number of displays for this Organization. A `display` is registered when the player is completely loaded and ready to play the Organization. 
+plays.total    | total number of plays for this Organization. A `play` is registered when the Organization starts to play. If the Organization have prerolls this is registered after all prerolls are complete.
 plays.unique        | number of unique plays.
 plays.device.desktop | number of plays on desktop
 plays.device.mobile | number of plays on mobile
@@ -684,22 +684,22 @@ plays.device.tablet | number of plays on tablet
 plays.mobile_os.android | number of plays on android
 plays.mobile_os.ios | number of plays on ios
 plays.mobile_os.windows_phone | number of plays on windows_phone
-segments | number of viewers for each of the 100 segments of the videos for this Account.
+segments | number of viewers for each of the 100 segments of the videos for this Organization.
 completion_rate | Number of viewers that viewed until the end presented with a decimal value. E.g. 0.42 means that 42% of the viewers viewed until the end.
-average_completion | How long the viewers viewed in average presented in decimal value. E.g. 0.5 means that the average user viewed 50% of the Account.
+average_completion | How long the viewers viewed in average presented in decimal value. E.g. 0.5 means that the average user viewed 50% of the Organization.
 countries | List containing plays per country sorted with the country with highest number of plays first.
 domains | List containing plays per domain sorted with the domain with highest number of plays first.
 players | List containing plays per player sorted with the player with highest number of plays first.
 
 
-## List Sites on Account
+## List workspaces on Organization
 
-This endpoint returns Sites having the most plays or displays on a Account during a specified period of time.
+This endpoint returns workspaces having the most plays or displays on a Organization during a specified period of time.
 
-> Get the most played Sites on a Account
+> Get the most played workspaces on a Organization
 
 ``shell
-curl "https://api.flowplayer.com/analytics/accounts/:accountId/sites" 
+curl "https://api.flowplayer.com/analytics/organizations/<organization_id>/workspaces" 
 ``
 
 > 
@@ -769,30 +769,30 @@ curl "https://api.flowplayer.com/analytics/accounts/:accountId/sites"
 ]
 ```
 
-> Get the most displays Sites in a specific Account and in a specified time range, limiting the results to the top 3 Sites.
+> Get the most displays workspaces in a specific Organization and in a specified time range, limiting the results to the top 3 workspaces.
 
 ```shell
-curl "https://api.flowplayer.com/analytics/accounts/54af42d8-b41d-4efc-b355-38d879820184/sites?size=3&start=2018-05-01&end=2018-05-31&sort=display"   
+curl "https://api.flowplayer.com/analytics/organizations/54af42d8-b41d-4efc-b355-38d879820184/workspaces?size=3&start=2018-05-01&end=2018-05-31&sort=display"   
 ```
 
-> Returns the three Sites with most displays in Account `54af42d8-b41d-4efc-b355-38d879820184` during May 2018
+> Returns the three workspaces with most displays in Organization `54af42d8-b41d-4efc-b355-38d879820184` during May 2018
 
 ```json
  [ 
     {
-        "name": "Sites 1",
+        "name": "workspaces 1",
         "id": "360b8f49-3c98-4020-ac72-83f958405239",
         "plays": 252863,       
         "displays":2131212
     },
     {
-        "name": "Sites 2",
+        "name": "workspaces 2",
         "id": "3de6843f-2a65-46bd-a899-753d813f22c7",
         "plays": 227743,
         "displays":1234020
     },
     {
-        "name": "Sites 3",
+        "name": "workspaces 3",
         "id": "9242781d-149e-468c-bc80-b383bc6fd73d",
         "plays": 210430,
         "displays":523223
@@ -802,15 +802,15 @@ curl "https://api.flowplayer.com/analytics/accounts/54af42d8-b41d-4efc-b355-38d8
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/accounts/:accountId/sites`
+`GET https://api.flowplayer.com/analytics/organizations/<organization_id>/workspaces`
 
 ### Request parameters
 
 Parameter | Description
 --------- | -------------------------------------
-accountId    | The Account's Id is mandatory in the path, this also sometimes also referred to as SiteGroup id.
+id    | The Organization's Id is mandatory in the path, this also sometimes also referred to as SiteGroup id.
 start     | optional, start date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
 end       | optional, end date and time, format `YYY-MM-DDTHH` or `YYY-MM-DD`
-size      | optional, maximum number of Sites to be returned, 10 is returned if size is not specified. The request is limited to return 200 Sites.
-sort      | optional, sorting used when listing the Sites. Possible values `displays` and `plays`. The default value is `plays`.
+size      | optional, maximum number of workspaces to be returned, 10 is returned if size is not specified. The request is limited to return 200 workspaces.
+sort      | optional, sorting used when listing the workspaces. Possible values `displays` and `plays`. The default value is `plays`.
 

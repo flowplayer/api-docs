@@ -36,7 +36,7 @@ curl -X GET "https://api.flowplayer.com/ovp/users/account?id=<user_id>"
         "id": "<ORGANIZATION_ID>",
         "name": "ORGANIZATION",
     },
-    "sites": [
+    "workspaces": [
         {
             "id": "<WORKSPACE_ID_A>",
             "name": "Workspace A",
@@ -86,7 +86,7 @@ time_zone |
 avatar_id |
 active_site_id | the id of the workspace that the users have as active
 state | current state of the user. Possible values `invited`, `active` and `revoked_invite`.
-sites[] | Add and remove access to workspaces for a user by adding / removing workspaces in the sites-listing. This needs to include both `id` and `name` of the workspace.
+workspaces[] | Add and remove access to workspaces for a user by adding / removing workspaces in the workspaces-listing. This needs to include both `id` and `name` of the workspace.
 
 
 ## Update User
@@ -128,7 +128,7 @@ curl -X POST "https://api.flowplayer.com/ovp/users/<user_id>"
         "id": "<ORGANIZATION_ID>",
         "name": "ORGANIZATION",
     },
-    "sites": [
+    "workspaces": [
         {
             "id": "<WORKSPACE_ID_A>",
             "name": "Workspace A",
@@ -171,7 +171,7 @@ time_zone |
 avatar_id |
 state | current state of the user. Possible values `invited`, `active` and `revoked_invite`.
 active_site_id | the id of the workspace that the users have as active
-sites[] | Add and remove access to workspaces for a user by adding / removing workspaces in the sites-listing. This needs to include both `id` and `name` of the workspace.
+workspaces[] | Add and remove access to workspaces for a user by adding / removing workspaces in the workspaces-listing. This needs to include both `id` and `name` of the workspace.
 
 ### Errors
 
@@ -459,7 +459,7 @@ curl 'https://app.flowplayer.com/ovp/organizations/<ORGANIZATION_ID>/users?query
                     "https": true
                 }
             },
-            "sites": null,
+            "workspaces": null,
             "emailNotification": "NONE"
         }
     ]
@@ -482,7 +482,7 @@ page_size        | `optional` - Page size for response, default value is `20`.
 search | `optional` - Search term for filtering the response. Searches `name`.
 sort.by | `optional` - Sorting column for the response, default value is `created_at`. Possible values: `created_at`, `email`, `last_logged_in`.
 sort.order | `optional` - Sorting order for the response, default value is `desc`. Possible values `asc` and `desc`
-filter | `optional` - Filters available are currently only `site` and `state`. The value that should be used for `sites` is `site_id` and `state` accept `invited`, `active` and `revoked_invite`.
+filter | `optional` - Filters available are currently only `site` and `state`. The value that should be used for `workspaces` is `site_id` and `state` accept `invited`, `active` and `revoked_invite`.
 
 ### Response
 

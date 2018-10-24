@@ -115,11 +115,11 @@ HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
 
-## List Sites 
+## List workspaces 
 
-Endpoint for fetching infomation about Sites. This is only for Flowplayer Admins.
+Endpoint for fetching infomation about workspaces. This is only for Flowplayer Admins.
 
-> Endpoint for fetching infomation about Sites on this platform.
+> Endpoint for fetching infomation about workspaces on this platform.
 
 ```shell
 curl "https://app.flowplayer.com/accounts/list"
@@ -127,7 +127,7 @@ curl "https://app.flowplayer.com/accounts/list"
 
 ```json
 {
-    "Sites": [
+    "workspaces": [
         {
             "id":"Site_id_1",
             "name":"Site_name",
@@ -168,12 +168,12 @@ filter | `optional` - TBD
 
 Parameter | Description
 --------- | -------------------------------------
-Sites.id | Id for Site
-Sites.name | Name for Site
-Sites.created_at | Creation date for Site
-Sites.https | If Site videos support https (Should be removed)
-Sites.distributor | If Site can distribute videos to other Sites
-Sites.fp_legacy_user_id | If exists this is the user id for old Flowplayer.org
+workspaces.id | Id for Site
+workspaces.name | Name for Site
+workspaces.created_at | Creation date for Site
+workspaces.https | If Site videos support https (Should be removed)
+workspaces.distributor | If Site can distribute videos to other workspaces
+workspaces.fp_legacy_user_id | If exists this is the user id for old Flowplayer.org
 
 ### Errors
 
@@ -231,7 +231,7 @@ TDB
 
 ## Delete Site 
 
-Endpoint for deleting one single Site. This will in some cases (when enterprise) not delete the videos on the Site. 
+Endpoint for deleting one single workspace. This will in some cases (when enterprise) not delete the videos on the workspace. 
 
 ### HTTP Request
 

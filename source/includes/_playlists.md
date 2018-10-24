@@ -38,9 +38,9 @@ HTTP status | Description
 
 ## List Playlists (NOT IMPLEMENTED)
 
-Endpoint for fetching infomation about playlists on a specific Site. The response is list of livecasts and for each livecast it contains a subset of the information available in the `get livecast`-request.
+Endpoint for fetching infomation about playlists on a specific workspace. The response is list of livecasts and for each livecast it contains a subset of the information available in the `get livecast`-request.
 
-> Endpoint for fetching infomation about livecasts on a specific Site.
+> Endpoint for fetching infomation about livecasts on a specific workspace.
 
 ```shell
 curl "https://api.flowplayer.com/playlists?siteId={site_id}"
