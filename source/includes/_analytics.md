@@ -95,7 +95,7 @@ This endpoint returns plays and display counts for specified time intervals.
 > Get data for today, with a comparison to yesterday.
 
 ```shell
-curl "https://api.flowplayer.com/analytics/videos/timeseries/{video_id}" 
+curl "https://api.flowplayer.com/analytics/videos/<video_id>/timeseries" 
 ```
 
 > Returns  On 2018-04-21 it returned following:
@@ -118,14 +118,13 @@ curl "https://api.flowplayer.com/analytics/videos/timeseries/{video_id}"
 }
 ```
 
-> Get hourly stats for three hours, comparing them to the previous three hours.
+> Get hourly stats for three hours
 
 ```shell
-curl "https://api.flowplayer.com/analytics/videos/{video_id}/timeline?start=2018-04-19T01&end=2018-04-19T04&previous=true"
+curl "https://api.flowplayer.com/analytics/videos/{video_id}/timeline?start=2018-04-19T01&end=2018-04-19T04"
 ```
 
-> Returns two intervals, one for the queried time range between 2018-05-01T00 and end=2018-05-01T03, and another interval
-is automatically added for a second three hour segment before the queried start time
+> Returns one intervals, one for the queried time range between 2018-05-01T00 and end=2018-05-01T03
 
 ```json
 {
@@ -153,33 +152,13 @@ is automatically added for a second three hour segment before the queried start 
             "displays": 8558,
             "plays": 89
         }
-    }, {
-        "date_from": "2018-04-18T23:00:00.000Z",
-        "date_to": "2018-04-19T02:00:00.000Z",
-        "intervals": [{
-            "time": "2018-04-19T00:00:00.000Z",
-            "plays": 7,
-            "displays": 1094
-        }, {
-            "time": "2018-04-19T01:00:00.000Z",
-            "plays": 13,
-            "displays": 1316
-        }, {
-            "time": "2018-04-19T02:00:00.000Z",
-            "plays": 12,
-            "displays": 1830
-        }],
-        "total": {
-            "displays": 4240,
-            "plays": 32
-        }
     }]
 }
 ```
 
 ### HTTP Request
 
-`GET https://api.flowplayer.com/analytics/videos/timeseries/{video_id}`
+`GET https://api.flowplayer.com/analytics/videos/<video_id>/timeseries`
 
 ### Request parameters
 
@@ -187,7 +166,6 @@ Parameter | Description
 --------- | -------------------------------------
 start     | optional - start date and time, format `YYYY-MM-DDTHH` or `YYYY-MM-DD`. If not specified it will return analytics for the last seven days in daily interval.
 end       | optional - end date and time, format `YYYY-MM-DDTHH` or `YYYY-MM-DD`
-previous  | optional - if the response should contain the previous interval compared with specified `start` and `end`. `Default` is `false` 
 interval | optional - Specifies the interval timespan and possible values are `day` or `hour`. `Default` is `day`.
 
 ### Response parameters
