@@ -815,6 +815,57 @@ size      | optional, maximum number of workspaces to be returned, 10 is returne
 sort      | optional, sorting used when listing the workspaces. Possible values `displays` and `plays`. The default value is `plays`.
 
 
+## Get Player Configuration timeseries analytics
+
+This endpoint returns plays counts for specified time intervals.
+
+> Get timeseries data
+
+```shell
+curl "https://api.flowplayer.com/analytics/players/<configuration_id>/timeseries?start=2018-10-31&end=2018-11-20" 
+```
+
+> Returns following:
+
+```json
+{
+    "series": {
+        "date_from": "2018-10-31T00:00:00.000Z",
+        "date_to": "2018-11-20T00:00:00.000Z",
+        "intervals": [{
+            "time": "2018-10-31T00:00:00.000Z",
+            "plays": 10,
+        },{
+            "time": "2018-11-01T00:00:00.000Z",
+            "plays": 20,
+        },{
+            "time": "2018-11-02T00:00:00.000Z",
+            "plays": 30,
+        },
+        ....
+        ],
+        "total": {
+            "plays": 60
+        }
+    }
+}
+```
+
+### HTTP Request
+
+`GET https://api.flowplayer.com/analytics/players/<configuration_id>/timeseries`
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+start     | optional - start date and time, format `YYYY-MM-DDTHH` or `YYYY-MM-DD`. If not specified it will return analytics for the last seven days in daily interval.
+end       | optional - end date and time, format `YYYY-MM-DDTHH` or `YYYY-MM-DD`
+
+### Response parameters
+
+Parameter | Description
+--------- | -------------------------------------
 
 ## List Videos for Player Configuration
 
