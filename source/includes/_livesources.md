@@ -8,7 +8,7 @@ List Livesources on a Workspace
 
 
 ```shell
-curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
+curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
 ```
 
 ```json
@@ -40,7 +40,7 @@ curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources`
+`GET https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources`
 
 ### Request parameters
 
@@ -57,8 +57,8 @@ sort_order | `optional` - Sorting order for the response, default value is `desc
 
 Parameter | Description
 --------- | -------------------------------------
-assets[].id | Id for Live Source
-assets[].name | Name for Live Source
+assets[].id | Id for Livesource
+assets[].name | Name for Livesource
 assets[].description | Description for Livesource
 assets[].stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. 
 assets[].ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. 
@@ -68,7 +68,7 @@ assets[].ingest_url | Url to our livestreaming servers. This shall be used in yo
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-404         | If the specified Workspace or Livecast is not found
+404         | If the specified Workspace is not found
 
 
 ## Get Livesource
@@ -78,7 +78,7 @@ Endpoint for fetching one Livesource
 > Endpoint for fetching one Livesource
 
 ```shell
-curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource/:livesource_id"
+curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/:livesource_id"
 ```
 
 ```json
@@ -93,19 +93,25 @@ curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource/:liveso
 
 ### HTTP Request
 
-`PUT https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource/:livesource_id`
+`PUT https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/:livesource_id`
 
 
 ### Response parameters
 
 Parameter | Description
 --------- | -------------------------------------
-id | Id for Live Source
-name | Name for Live Source
+id | Id for Livesource
+name | Name for Livesource
 description | Description for Livesource
 stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. 
 ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. 
 
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified Workspace or Livesource is not found
 
 ## Create Livesource
 
@@ -114,7 +120,7 @@ Endpoint for creating a Livesource
 > Endpoint for creating a Livesource
 
 ```shell
-curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource"
+curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
 ```
 
 ```json
@@ -129,7 +135,7 @@ curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource"
 
 ### HTTP Request
 
-`PUT https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource`
+`PUT https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources`
 
 
 ### Request parameters
@@ -143,12 +149,19 @@ description     | `optional` The Livesource description.
 
 Parameter | Description
 --------- | -------------------------------------
-id | Id for Live Source
-name | Name for Live Source
+id | Id for Livesource
+name | Name for Livesource
 description | Description for Livesource
 stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. 
 ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. 
 
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified Workspace is not found
+422         | If some invalid input properties are used in the request
 
 ## Update Livesource
 
@@ -157,7 +170,7 @@ Endpoint for updating a Livesource. The only fields that can be updated for a Li
 > Endpoint for updating a Livesource
 
 ```shell
-curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource"
+curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
 ```
 
 ```json
@@ -172,7 +185,7 @@ curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource"
 
 ### HTTP Request
 
-`PUT https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesource`
+`PUT https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources`
 
 
 ### Request parameters
@@ -187,13 +200,62 @@ description     | `optional` The Livesource description.
 
 Parameter | Description
 --------- | -------------------------------------
-id | Id for Live Source
-name | Name for Live Source
+id | Id for Livesource
+name | Name for Livesource
 description | Description for Livesource
 stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. 
 ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. 
 
-## Livesources Available
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified Workspace is not found
+422         | If some invalid input properties, only `id`, `name` and `description` are valid, are used in the request
+
+
+## Delete Livesource
+
+Endpoint for deleting a Livesource. When deleting a Livesource all Livestream that are setup to use the Livesource will be reconfigured with their default stream name.
+
+The request is done as a `DELETE` with a body containing
+
+> Endpoint for deleting a Livesource
+
+```shell
+curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/:livesource_id"
+```
+
+```json
+{}
+```
+
+### HTTP Request
+
+`DELETE https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/:livesource_id`
+
+
+### Request parameters
+
+Parameter | Description
+--------- | -------------------------------------
+id        | Id for the Livesource to by deleted
+
+### Response parameters
+
+Parameter | Description
+--------- | -------------------------------------
+
+### Errors
+
+HTTP status | Description
+----------- | --------------------------------------------
+401         | If authorization fails for your request
+404         | If the specified Workspace or Livesource is not found
+
+
+## Livesource Availability
 
 List all livesource on a Workspace and their availability for during the selected timespan.
 
@@ -201,7 +263,7 @@ List all livesource on a Workspace and their availability for during the selecte
 
 
 ```shell
-curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources/available?timespan=2018-01-16T11:45:44+0100,2018-02-16T11:45:44+0100"
+curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/available?timespan=2018-01-16T11:45:44+0100,2018-02-16T11:45:44+0100"
 ```
 
 ```json
@@ -236,7 +298,7 @@ curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources/availa
 
 ### HTTP Request
 
-`GET https://app.flowplayer.com/ovp/workspaces/:workspace_id/livesources/available?timespan=:starttime,:stoptime`
+`GET https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/available?timespan=:starttime,:stoptime`
 
 ### Request parameters
 
@@ -249,21 +311,21 @@ timespan        | Start- and stopdate commaseperated in `yyyy-MM-dd'T'HH:mm:ssZ`
 
 Parameter | Description
 --------- | -------------------------------------
-site_id        | Workspace for all Live Sources
+site_id        | Workspace for all Livesources
 start      | Start date of timespan
 stop      | Stop date of timespan
-sources[].id | Id for Live Source
-sources[].name | Name for Live Source
-sources[].bookings | Contains a list of all Livecasts that will use the Live Source during the timespan. If empty no bookings exists and the Live Source is available for use.
-sources[].bookings[].slot_id | Id for Livecast.
-sources[].bookings[].start | Starttime for Livecast formatted in `yyyy-MM-dd'T'HH:mm:ssZ`.
-sources[].bookings[].stop | Stoptime for Livecast formatted in `yyyy-MM-dd'T'HH:mm:ssZ`.
+sources[].id | Id for Livesource
+sources[].name | Name for Livesource
+sources[].bookings | Contains a list of all Livestreams that will use the Livesource during the timespan. If empty no bookings exists and the Livesource is available for use.
+sources[].bookings[].slot_id | Id for Livestream.
+sources[].bookings[].start | Starttime for Livestream formatted in `yyyy-MM-dd'T'HH:mm:ssZ`.
+sources[].bookings[].stop | Stoptime for Livestream formatted in `yyyy-MM-dd'T'HH:mm:ssZ`.
 
 ### Errors
 
 HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
-404         | If the specified Workspace or Livecast is not found
+404         | If the specified Workspace or Livesource is not found
 
 
