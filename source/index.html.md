@@ -15,6 +15,7 @@ includes:
   - livestreams
   - liveclips
   - livesources
+  - players
   - playlists
   - user
   - workspace
