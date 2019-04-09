@@ -41,7 +41,8 @@ curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/player-config/:pla
     },
     "recommendations": {
         "advance": false,
-        "interval": 0
+        "interval": 0,
+        "source":"playlist"
     },
     "recommendation_playlist": {
         "id": ":playlist_id",
@@ -111,6 +112,7 @@ share.share_type | Supported in both `Native` and  `7`. Determines what should b
 recommendations | Settings for how to rendered recommendations.
 recommendations.advance | If `true` it will automatically start playing the next video.
 recommendations.interval | Determines the wait time until next video automatically will start playing.
+recommendations.source | Determines with type of content to be display in the recommendations screen. We have three different possible value `none`, `playlist` and `dynamic`. No recommendations will be displayed if `none` is set. With `dynamic` the platform will automatically fill the recommendation screen with videos related to the displayed video. For `playlist` it will use the playlist specified in `recommendation_playlist` to fetch videos. By default `dynamic` will be used.
 recommendation_playlist | The playlist, if any, that will be used to fetch videos to the recommendations screen.
 recommendation_playlist | The playlist, if any, that will be used to fetch videos to the recommendations screen.
 restrictions | An array containing host where the player is allowed to render.
@@ -214,7 +216,8 @@ curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/player-configs"
 		},
 		"recommendations": {
 			"advance": false,
-			"interval": 0
+			"interval": 0,
+      "source":"none"
 		},
 		"restrictions": ["flowplayer.com", "google.com"],
 		"language": {
@@ -286,6 +289,7 @@ share.share_type | Supported in both `Native` and  `7`. Determines what should b
 recommendations | Settings for how to rendered recommendations.
 recommendations.advance | If `true` it will automatically start playing the next video.
 recommendations.interval | Determines the wait time until next video automatically will start playing.
+recommendations.source | Determines with type of content to be display in the recommendations screen. We have three different possible value `none`, `playlist` and `dynamic`. No recommendations will be displayed if `none` is set. With `dynamic` the platform will automatically fill the recommendation screen with videos related to the displayed video. For `playlist` it will use the playlist specified in `recommendation_playlist` to fetch videos. By default `dynamic` will be used.
 recommendation_playlist | The playlist, if any, that will be used to fetch videos to the recommendations screen.
 restrictions | An array containing host where the player is allowed to render.
 language | Language used in the player. Possible values: TODO
@@ -344,7 +348,8 @@ curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/player-config"
   },
   "recommendations": {
     "advance": false,
-    "interval": 0
+    "interval": 0,
+    "source":"dynamic"
   },
   "restrictions": ["flowplayer.com", "apple.com"],
   "language": {
@@ -399,6 +404,7 @@ share.share_type | Supported in both `Native` and  `7`. Determines what should b
 recommendations | `optional`  Settings for how to rendered recommendations.
 recommendations.advance | If `true` it will automatically start playing the next video. Default value is `false`.
 recommendations.interval | Determines the wait time until next video automatically will start playing. Default value is `0`.
+recommendations.source | Determines with type of content to be display in the recommendations screen. We have three different possible value `none`, `playlist` and `dynamic`. No recommendations will be displayed if `none` is set. With `dynamic` the platform will automatically fill the recommendation screen with videos related to the displayed video. For `playlist` it will use the playlist specified in `recommendation_playlist` to fetch videos. By default `dynamic` will be used.
 recommendation_playlist | `optional`  The playlist, if any, that will be used to fetch videos to the recommendations screen.
 restrictions | `optional`  An array containing host where the player is allowed to render.
 language.name | `optional`  Language used in the player. Possible values: TODO.  Default value is `ENG`.
@@ -450,7 +456,8 @@ curl "https://app.flowplayer.com/ovp/workspaces/:workspace_id/player-config/:pla
   },
   "recommendations": {
     "advance": false,
-    "interval": 0
+    "interval": 0,
+    "source": "dynamic"
   },
   "restrictions": ["flowplayer.com", "apple.com"],
   "language": {
@@ -505,6 +512,7 @@ share.share_type | Supported in both `Native` and  `7`. Determines what should b
 recommendations | `optional`  Settings for how to rendered recommendations. Recommendations object do not support partial updates. All existing recommendations configurations will be removed on update. If you want to update the Player without changing anything in recommendations you should leave out the property in the update request.
 recommendations.advance | If `true` it will automatically start playing the next video. Default value is `false`.
 recommendations.interval | Determines the wait time until next video automatically will start playing. Default value is `0`.
+recommendations.source | Determines with type of content to be display in the recommendations screen. We have three different possible value `none`, `playlist` and `dynamic`. No recommendations will be displayed if `none` is set. With `dynamic` the platform will automatically fill the recommendation screen with videos related to the displayed video. For `playlist` it will use the playlist specified in `recommendation_playlist` to fetch videos. By default `dynamic` will be used.
 recommendation_playlist | `optional`  The playlist, if any, that will be used to fetch videos to the recommendations screen.
 restrictions | `optional`  An array containing host where the player is allowed to render. Restrictions array do not support partial updates. All existing restrictions configurations will be removed on update. If you want to update the Player without changing anything in restrictions you should leave out the property in the update request.
 language.name | `optional`  Language used in the player. Possible values: TODO.  Default value is `ENG`.
