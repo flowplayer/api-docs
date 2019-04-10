@@ -25,14 +25,17 @@ curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
             "name": "Studio",
             "description": "Configured on our Studio computer",
             "stream_name": "32De23",
-            "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live"
+            "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live",
+            "type":"STREAM"
         },
         {
             "id": "764335ee-bd56-4f1f-b610-f703ddaf6545",
             "name": "iPhone",
             "description": "In iPhone app",
             "stream_name": "Rpdo32",
-            "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live"
+            "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live",
+            "type":"REMOTE",
+            "remote_hls_url":"https://flowplayer.com/awesome_livestream.m3u8"
         }
     ]
 }
@@ -60,8 +63,11 @@ Parameter | Description
 assets[].id | Id for Livesource
 assets[].name | Name for Livesource
 assets[].description | Description for Livesource
-assets[].stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. 
-assets[].ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. 
+assets[].stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource.
+assets[].ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource.
+assets[].stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource.
+assets[].type | Type of live source. Currently there are two types of Livesources, `STREAM` and `REMOTE`.
+assets[].remote_hls_url | Only exists on Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
 
 ### Errors
 
@@ -87,7 +93,8 @@ curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/:lives
     "name": "Flowplayer Livesource",
     "description": "On Office computer",
     "stream_name": "8fbpE5iA",
-    "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live"
+    "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live",
+    "type":"STREAM"
 }
 ```
 
@@ -103,8 +110,10 @@ Parameter | Description
 id | Id for Livesource
 name | Name for Livesource
 description | Description for Livesource
-stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. 
-ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. 
+type | Type of Livesource. Currently there are two types of Livesources, `STREAM` and `REMOTE`.
+stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. This is not relevant for `REMOTE` Livesources.
+ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. This is not relevant for `REMOTE` Livesources.
+remote_hls_url | Only exists on Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
 
 ### Errors
 
@@ -129,7 +138,8 @@ curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
     "name": "Flowplayer Livesource",
     "description": "On Office computer",
     "stream_name": "8fbpE5iA",
-    "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live"
+    "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live",
+    "type":"STREAM"
 }
 ```
 
@@ -144,6 +154,9 @@ Parameter | Description
 --------- | -------------------------------------
 name      | The Livesource name.
 description     | `optional` The Livesource description.
+type | Type of Livesource. Currently there are two types of Livesources, `STREAM` and `REMOTE`. Use `STREAM` when you want a Livesource that you use for streaming to Flowplayer's Livestreaming environment and `REMOTE` when you have a HLS-stream that you want to stream directly to the player. When `REMOTE` is selected `remote_hls_url` must be specified.
+remote_hls_url | Only exists on Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
+
 
 ### Response parameters
 
@@ -152,8 +165,11 @@ Parameter | Description
 id | Id for Livesource
 name | Name for Livesource
 description | Description for Livesource
-stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. 
-ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. 
+type | Type of Livesource. Currently there are two types of Livesources, `STREAM` and `REMOTE`.
+stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. This is not relevant for `REMOTE` Livesources.
+ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. This is not relevant for `REMOTE` Livesources.
+remote_hls_url | Only exists on Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
+
 
 ### Errors
 
@@ -165,7 +181,7 @@ HTTP status | Description
 
 ## Update Livesource
 
-Endpoint for updating a Livesource. The only fields that can be updated for a Livesource is `name` and `description`. Other fields such as `stream_name` and `ingest_url` are final and can't be altered once a Livesource have been created.
+Endpoint for updating a Livesource. The only fields that can be updated for a Livesource is `name`, `description` and `remote_hls_url`. Other fields such as `stream_name`, `ingest_url` and `REMOTE` are final and can't be changed once a Livesource have been created.
 
 > Endpoint for updating a Livesource
 
@@ -178,8 +194,7 @@ curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
     "id": "951ba340-2949-4299-9b55-5d33b3bc9a5e",
     "name": "Flowplayer Livesource",
     "description": "On Office computer",
-    "stream_name": "8fbpE5iA",
-    "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live"
+    "remote_hls_url":"https://flowplayer.com/ultimate_remote_livestream.m3u8"
 }
 ```
 
@@ -195,6 +210,8 @@ Parameter | Description
 id        | Id for the Livesource to by updated
 name      | `optional` The Livesource name.
 description     | `optional` The Livesource description.
+remote_hls_url | Only editable for Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
+
 
 ### Response parameters
 
@@ -203,8 +220,11 @@ Parameter | Description
 id | Id for Livesource
 name | Name for Livesource
 description | Description for Livesource
-stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. 
-ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. 
+type | Type of Livesource. Currently there are two types of Livesources, `STREAM` and `REMOTE`.
+stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. This is not relevant for `REMOTE` Livesources.
+ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. This is not relevant for `REMOTE` Livesources.
+remote_hls_url | Only exists on Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
+
 
 ### Errors
 
@@ -327,5 +347,3 @@ HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
 404         | If the specified Workspace or Livesource is not found
-
-
