@@ -26,7 +26,11 @@ curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
             "description": "Configured on our Studio computer",
             "stream_name": "32De23",
             "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live",
-            "type":"STREAM"
+            "type":"STREAM",
+            "owner":{
+              "id":"workspace_id_1",
+              "name":"workspace 1"
+            }
         },
         {
             "id": "764335ee-bd56-4f1f-b610-f703ddaf6545",
@@ -35,7 +39,11 @@ curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
             "stream_name": "Rpdo32",
             "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live",
             "type":"REMOTE",
-            "remote_hls_url":"https://flowplayer.com/awesome_livestream.m3u8"
+            "remote_hls_url":"https://flowplayer.com/awesome_livestream.m3u8",
+            "owner":{
+              "id":"workspace_id_2",
+              "name":"workspace 2"
+            }
         }
     ]
 }
@@ -54,7 +62,9 @@ page_size        | `optional` - Page size for response, default value is `20`.
 search | `optional` - Search term for filtering the response. Searches `name`.
 sort_by | `optional` - Sorting column for the response, default value is `name`. Possible values: `name`.
 sort_order | `optional` - Sorting order for the response, default value is `desc`. Possible values `asc` and `desc`
-
+filters | It's possible to use multiple different filters in the query. The different filter keys are listed below.
+key.type | `optional` - Values should be an array of different Livesource types. Allowed values are `REMOTE`,`STREAM`.
+key.only_own | `optional` - If only Livesources which the current Workspace as owner should be displayed or if all Livesources the Workspace have access to should be displayed.
 
 ### Response
 
@@ -68,6 +78,9 @@ assets[].ingest_url | Url to our livestreaming servers. This shall be used in yo
 assets[].stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource.
 assets[].type | Type of live source. Currently there are two types of Livesources, `STREAM` and `REMOTE`.
 assets[].remote_hls_url | Only exists on Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
+assets[].type | Type of live source. Currently there are two types of Livesources, `STREAM` and `REMOTE`.
+assets[].owner.id | Workspace Id for the workspace that owns the Livesource.
+assets[].owner.name | Workspace name for the workspace that owns the Livesource.
 
 ### Errors
 
