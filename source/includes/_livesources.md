@@ -107,13 +107,24 @@ curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/:lives
     "description": "On Office computer",
     "stream_name": "8fbpE5iA",
     "ingest_url": "rtmp://sample.input.flowplayer.com:1935/live",
-    "type":"STREAM"
+    "type":"STREAM",
+    "owner":{
+      "id":"workspace_1_id",
+      "name":"workspace name"
+    },
+    "workspaces": [{
+      "id":"workspace_1_id",
+      "name":"workspace name"
+    }, {
+      "id":"workspace_2_id",
+      "name":"workspace name 2"
+    }]
 }
 ```
 
 ### HTTP Request
 
-`PUT https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/:livesource_id`
+`GET https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources/:livesource_id`
 
 
 ### Response parameters
@@ -127,6 +138,10 @@ type | Type of Livesource. Currently there are two types of Livesources, `STREAM
 stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. This is not relevant for `REMOTE` Livesources.
 ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. This is not relevant for `REMOTE` Livesources.
 remote_hls_url | Only exists on Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
+type | Type of live source. Currently there are two types of Livesources, `STREAM` and `REMOTE`.
+owner.id | Workspace Id for the workspace that owns the Livesource.
+owner.name | Workspace name for the workspace that owns the Livesource.
+workspaces[] | List of Workspaces, including owner, that have access to the Livesource
 
 ### Errors
 
@@ -182,7 +197,9 @@ type | Type of Livesource. Currently there are two types of Livesources, `STREAM
 stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. This is not relevant for `REMOTE` Livesources.
 ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. This is not relevant for `REMOTE` Livesources.
 remote_hls_url | Only exists on Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
-
+owner.id | Workspace Id for the workspace that owns the Livesource.
+owner.name | Workspace name for the workspace that owns the Livesource.
+workspaces[] | List of Workspaces, including owner, that have access to the Livesource
 
 ### Errors
 
@@ -224,7 +241,7 @@ id        | Id for the Livesource to by updated
 name      | `optional` The Livesource name.
 description     | `optional` The Livesource description.
 remote_hls_url | Only editable for Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
-
+workspaces[] | List of Workspaces, including owner, that wi have access to the Livesource. Notice that it's not allowed to remove access for Workspace that have future or active Livestreams booked this Livesource.
 
 ### Response parameters
 
@@ -237,7 +254,9 @@ type | Type of Livesource. Currently there are two types of Livesources, `STREAM
 stream_name | Identifier for the Livesource on our livestreaming servers. This shall be used in your broadcast software to identify this Livesource. This is not relevant for `REMOTE` Livesources.
 ingest_url | Url to our livestreaming servers. This shall be used in your broadcast software to send your input to the correct livestreaming server for this Livesource. This is not relevant for `REMOTE` Livesources.
 remote_hls_url | Only exists on Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
-
+owner.id | Workspace Id for the workspace that owns the Livesource.
+owner.name | Workspace name for the workspace that owns the Livesource.
+workspaces[] | List of Workspaces, including owner, that have access to the Livesource
 
 ### Errors
 
@@ -245,7 +264,7 @@ HTTP status | Description
 ----------- | --------------------------------------------
 401         | If authorization fails for your request
 404         | If the specified Workspace is not found
-422         | If some invalid input properties, only `id`, `name` and `description` are valid, are used in the request
+422         | If some invalid input properties are used in the request. Only `id`, `name`, `description`, `remote_hls_url` and `workspaces` are valid. `422` will be returned if you try to remove access for Workspace that have future or active Livestreams booked this Livesource.
 
 
 ## Delete Livesource
