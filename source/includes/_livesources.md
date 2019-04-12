@@ -224,13 +224,20 @@ curl "https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources"
     "id": "951ba340-2949-4299-9b55-5d33b3bc9a5e",
     "name": "Flowplayer Livesource",
     "description": "On Office computer",
-    "remote_hls_url":"https://flowplayer.com/ultimate_remote_livestream.m3u8"
+    "remote_hls_url":"https://flowplayer.com/ultimate_remote_livestream.m3u8",
+    "workspaces": [{
+      "id":"workspace_1_id",
+      "name":"workspace name"
+    }, {
+      "id":"workspace_2_id",
+      "name":"workspace name 2"
+    }]
 }
 ```
 
 ### HTTP Request
 
-`PUT https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources`
+`POST https://api.flowplayer.com/ovp/workspaces/:workspace_id/livesources`
 
 
 ### Request parameters
@@ -241,7 +248,7 @@ id        | Id for the Livesource to by updated
 name      | `optional` The Livesource name.
 description     | `optional` The Livesource description.
 remote_hls_url | Only editable for Livesources with `REMOTE`-type. This url is used by the enduser to view the stream in the player.
-workspaces[] | List of Workspaces, including owner, that wi have access to the Livesource. Notice that it's not allowed to remove access for Workspace that have future or active Livestreams booked this Livesource.
+workspaces[].id | List of Workspaces, including owner, that wi have access to the Livesource. Notice that it's not allowed to remove access for Workspace that have future or active Livestreams booked this Livesource.
 
 ### Response parameters
 
